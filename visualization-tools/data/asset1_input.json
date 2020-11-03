@@ -1,15 +1,5 @@
 {
-  "tokens": [
-    "token0",
-    "token1",
-    "token2",
-    "token3",
-    "token4",
-    "token5",
-    "token6",
-    "token7",
-    "token8"
-  ],
+  "tokens": ["token0", "token1", "token2", "token3", "token4", "token5", "token6", "token7", "token8"],
   "refToken": "token0",
   "accounts": {
     "e0b3700e0aadcb18ed8d4bff648bc99896a18ad1": {
