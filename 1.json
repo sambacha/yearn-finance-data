@@ -1,0 +1,47 @@
+{
+  "status": 200,
+  "title": "OK",
+  "description": "Successful request",
+  "payload": {
+    "records": [
+      {
+        "amount": "0",
+        "blockNumber": "4605167",
+        "decimals": "-1",
+        "from": { "address": "0x0000000000000000000000000000000000000000" },
+        "isERC20": false,
+        "isERC721": true,
+        "isERC777": false,
+        "isERC884": false,
+        "isERC998": false,
+        "logIndex": 22,
+        "name": "CryptoKitties",
+        "symbol": "CK",
+        "timestamp": 1511415679000,
+        "timestampNanoseconds": 0,
+        "to": [{ "address": "0x0000000000000000000000000000000000000000" }],
+        "tokenAddress": "0x06012c8cf97bead5deae237070f9587f8e7a266d",
+        "transactionHash": "0x691f348ef11e9ef95d540a2da2c5f38e36072619aa44db0827e1b8a276f120f4"
+      },
+      {
+        "amount": "2",
+        "blockNumber": "4605346",
+        "decimals": "-1",
+        "from": { "address": "0x0000000000000000000000000000000000000000" },
+        "isERC20": false,
+        "isERC721": true,
+        "isERC777": false,
+        "isERC884": false,
+        "isERC998": false,
+        "logIndex": 77,
+        "name": "CryptoKitties",
+        "symbol": "CK",
+        "timestamp": 1511417999000,
+        "timestampNanoseconds": 0,
+        "to": [{ "address": "0xba52c75764d6f594735dc735be7f1830cdf58ddf" }],
+        "tokenAddress": "0x06012c8cf97bead5deae237070f9587f8e7a266d",
+        "transactionHash": "0x25e8d5f3fd2f90433990ddd1d550ecce5ad800fd27aa77c3f2511fde006974f8"
+      }
+    ]
+  }
+}

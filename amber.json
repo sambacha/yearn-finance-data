@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "title": "BAD REQUEST",
+  "description": "Request was invalid or cannot be served. See message for details",
+  "error": true,
+  "message": "Invalid timestamp value: 'iso8611'."
+}

@@ -1,0 +1,14 @@
+*.json merge=ours
+package-lock.json merge=npm-merge-driver
+*.json merge=npm-merge-driver
+*.xml    text
+*.xsd    text
+*.xsl    text
+*.yml    text
+.gitattributes text
+KEY      text
+LICENSE* text
+*.html   text diff=html
+test/ export-ignore
+*.md  export-ignore
+
