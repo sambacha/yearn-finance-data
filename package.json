@@ -1,12 +1,24 @@
 {
   "name": "yearn-finance-data",
   "version": "1.0.0",
-  "description": "",
-  "main": ".prettierrc.js",
+  "description": "web3 datasets and analytics for strategists",
+  "files": [],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sambacha/yearn-finance-data.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sambacha/yearn-finance-data/issues"
+  },
+  "homepage": "https://github.com/sambacha/yearn-finance-data#readme",
+  "devDependencies": {
+    "d3": "^6.2.0",
+    "lodash": "^4.17.20"
+  }
 }

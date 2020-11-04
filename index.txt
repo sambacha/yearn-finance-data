@@ -1,0 +1,1177 @@
+.
+├── README.md
+├── amberdata-reference/
+│   ├── 1.json
+│   ├── amber.json
+│   ├── dataSetBinance.json
+│   ├── historical.json
+│   ├── transfers0.json
+│   ├── velocityTrial1.json
+│   ├── volumeYFI.json
+│   ├── yearnFinance.json
+│   └── yearnVelocity.json
+├── data/
+│   └── stablecoin.sql
+├── data-analysis/
+│   ├── LICENSE
+│   ├── Makefile
+│   ├── README.md
+│   ├── data/
+│   │   ├── external/
+│   │   ├── interim/
+│   │   ├── processed/
+│   │   └── raw/
+│   ├── docs/
+│   │   ├── Makefile
+│   │   ├── commands.rst
+│   │   ├── conf.py
+│   │   ├── getting-started.rst
+│   │   ├── index.rst
+│   │   └── make.bat
+│   ├── gnosis\ oba-uniswap-research\ master\ src.zip
+│   ├── models/
+│   ├── notebooks/
+│   ├── references/
+│   ├── reports/
+│   │   └── figures/
+│   ├── requirements.txt
+│   ├── setup.py
+│   ├── src/
+│   │   ├── __init__.py
+│   │   ├── data/
+│   │   │   ├── __init__.py
+│   │   │   └── make_dataset.py
+│   │   ├── features/
+│   │   │   ├── __init__.py
+│   │   │   └── build_features.py
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── predict_model.py
+│   │   │   └── train_model.py
+│   │   └── visualization/
+│   │       ├── __init__.py
+│   │       └── visualize.py
+│   ├── test_environment.py
+│   └── tox.ini
+├── data-providers/
+│   └── web3/
+│       ├── bancor/
+│       │   └── data/
+│       │       ├── bnt/
+│       │       │   ├── liquidity.csv
+│       │       │   └── total_volume.csv
+│       │       ├── providers/
+│       │       │   ├── 4xbbnt.csv
+│       │       │   ├── 4xbbnt_token.json
+│       │       │   ├── abxbnt.csv
+│       │       │   ├── abxbnt_token.json
+│       │       │   ├── acdbnt.csv
+│       │       │   ├── acdbnt_token.json
+│       │       │   ├── acptbnt.csv
+│       │       │   ├── acptbnt_token.json
+│       │       │   ├── agribnt.csv
+│       │       │   ├── agribnt_token.json
+│       │       │   ├── aixbnt.csv
+│       │       │   ├── aixbnt_token.json
+│       │       │   ├── alephbnt.csv
+│       │       │   ├── alephbnt_token.json
+│       │       │   ├── amnbnt.csv
+│       │       │   ├── amnbnt_token.json
+│       │       │   ├── amplbnt.csv
+│       │       │   ├── amplbnt_token.json
+│       │       │   ├── ankbnt.csv
+│       │       │   ├── ankbnt_token.json
+│       │       │   ├── antbnt.csv
+│       │       │   ├── antbnt_token.json
+│       │       │   ├── atsbnt.csv
+│       │       │   ├── atsbnt_token.json
+│       │       │   ├── aucbnt.csv
+│       │       │   ├── aucbnt_token.json
+│       │       │   ├── autobnt.csv
+│       │       │   ├── autobnt_token.json
+│       │       │   ├── batbnt.csv
+│       │       │   ├── batbnt_token.json
+│       │       │   ├── batusdb.csv
+│       │       │   ├── batusdb_token.json
+│       │       │   ├── baxbnt.csv
+│       │       │   ├── baxbnt_token.json
+│       │       │   ├── bbobnt.csv
+│       │       │   ├── bbobnt_token.json
+│       │       │   ├── bnbbnt.csv
+│       │       │   ├── bnbbnt_token.json
+│       │       │   ├── bntcap.csv
+│       │       │   ├── bntcap_token.json
+│       │       │   ├── bntswrv.csv
+│       │       │   ├── bntswrv_token.json
+│       │       │   ├── boxxbnt.csv
+│       │       │   ├── boxxbnt_token.json
+│       │       │   ├── busdusdb.csv
+│       │       │   ├── busdusdb_token.json
+│       │       │   ├── c20bnt.csv
+│       │       │   ├── c20bnt_token.json
+│       │       │   ├── catbnt.csv
+│       │       │   ├── catbnt_token.json
+│       │       │   ├── cbltbnt.csv
+│       │       │   ├── cbltbnt_token.json
+│       │       │   ├── ceekbnt.csv
+│       │       │   ├── ceekbnt_token.json
+│       │       │   ├── ceekusdb.csv
+│       │       │   ├── ceekusdb_token.json
+│       │       │   ├── celbnt.csv
+│       │       │   ├── celbnt_token.json
+│       │       │   ├── cgtbnt.csv
+│       │       │   ├── cgtbnt_token.json
+│       │       │   ├── cherrybnt.csv
+│       │       │   ├── cherrybnt_token.json
+│       │       │   ├── commbnt.csv
+│       │       │   ├── commbnt_token.json
+│       │       │   ├── cotbnt.csv
+│       │       │   ├── cotbnt_token.json
+│       │       │   ├── crtsbnt.csv
+│       │       │   ├── crtsbnt_token.json
+│       │       │   ├── cvtbnt.csv
+│       │       │   ├── cvtbnt_token.json
+│       │       │   ├── daibnt.csv
+│       │       │   ├── daibnt_1.csv
+│       │       │   ├── daibnt_1_token.json
+│       │       │   ├── daibnt_token.json
+│       │       │   ├── daiusdb.csv
+│       │       │   ├── daiusdb_token.json
+│       │       │   ├── danbnt.csv
+│       │       │   ├── danbnt_token.json
+│       │       │   ├── databnt.csv
+│       │       │   ├── databnt_token.json
+│       │       │   ├── dgdbnt.csv
+│       │       │   ├── dgdbnt_token.json
+│       │       │   ├── drgnbnt.csv
+│       │       │   ├── drgnbnt_token.json
+│       │       │   ├── dtrcbnt.csv
+│       │       │   ├── dtrcbnt_token.json
+│       │       │   ├── dxdbnt.csv
+│       │       │   ├── dxdbnt_token.json
+│       │       │   ├── dzarusdb.csv
+│       │       │   ├── dzarusdb_token.json
+│       │       │   ├── efoodbnt.csv
+│       │       │   ├── efoodbnt_token.json
+│       │       │   ├── eletbnt.csv
+│       │       │   ├── eletbnt_token.json
+│       │       │   ├── elfbnt.csv
+│       │       │   ├── elfbnt_token.json
+│       │       │   ├── emcobnt.csv
+│       │       │   ├── emcobnt_token.json
+│       │       │   ├── emit1usdb.csv
+│       │       │   ├── emit1usdb_token.json
+│       │       │   ├── enjbnt.csv
+│       │       │   ├── enjbnt_token.json
+│       │       │   ├── enjusdb.csv
+│       │       │   ├── enjusdb_token.json
+│       │       │   ├── eszbnt.csv
+│       │       │   ├── eszbnt_token.json
+│       │       │   ├── ethbnt.csv
+│       │       │   ├── ethbnt_token.json
+│       │       │   ├── ethusdb.csv
+│       │       │   ├── ethusdb_token.json
+│       │       │   ├── eursbnt.csv
+│       │       │   ├── eursbnt_token.json
+│       │       │   ├── evedbnt.csv
+│       │       │   ├── evedbnt_token.json
+│       │       │   ├── ewtbbnt.csv
+│       │       │   ├── ewtbbnt_token.json
+│       │       │   ├── exobnt.csv
+│       │       │   ├── exobnt_token.json
+│       │       │   ├── fcousdb.csv
+│       │       │   ├── fcousdb_token.json
+│       │       │   ├── fkxbnt.csv
+│       │       │   ├── fkxbnt_token.json
+│       │       │   ├── flixxbnt.csv
+│       │       │   ├── flixxbnt_token.json
+│       │       │   ├── fthbnt.csv
+│       │       │   ├── fthbnt_token.json
+│       │       │   ├── fttbnt.csv
+│       │       │   ├── fttbnt_token.json
+│       │       │   ├── ftxbnt.csv
+│       │       │   ├── ftxbnt_token.json
+│       │       │   ├── fxcbnt.csv
+│       │       │   ├── fxcbnt_token.json
+│       │       │   ├── gesbnt.csv
+│       │       │   ├── gesbnt_token.json
+│       │       │   ├── gldrbnt.csv
+│       │       │   ├── gldrbnt_token.json
+│       │       │   ├── gnobnt.csv
+│       │       │   ├── gnobnt_token.json
+│       │       │   ├── gridbnt.csv
+│       │       │   ├── gridbnt_token.json
+│       │       │   ├── grigusdb.csv
+│       │       │   ├── grigusdb_token.json
+│       │       │   ├── gtobnt.csv
+│       │       │   ├── gtobnt_token.json
+│       │       │   ├── hedgbnt.csv
+│       │       │   ├── hedgbnt_token.json
+│       │       │   ├── hotbnt.csv
+│       │       │   ├── hotbnt_token.json
+│       │       │   ├── invoxbnt.csv
+│       │       │   ├── invoxbnt_token.json
+│       │       │   ├── j8tbnt.csv
+│       │       │   ├── j8tbnt_token.json
+│       │       │   ├── jntre.csv
+│       │       │   ├── jntre_token.json
+│       │       │   ├── jrt90bnt10.csv
+│       │       │   ├── jrt90bnt10_token.json
+│       │       │   ├── jrtbnt.csv
+│       │       │   ├── jrtbnt_token.json
+│       │       │   ├── jrtusdb.csv
+│       │       │   ├── jrtusdb_token.json
+│       │       │   ├── kinbnt.csv
+│       │       │   ├── kinbnt_token.json
+│       │       │   ├── kncbnt.csv
+│       │       │   ├── kncbnt_token.json
+│       │       │   ├── kncusdb.csv
+│       │       │   ├── kncusdb_token.json
+│       │       │   ├── ldcbnt.csv
+│       │       │   ├── ldcbnt_token.json
+│       │       │   ├── linkbnt.csv
+│       │       │   ├── linkbnt_token.json
+│       │       │   ├── lkscbnt.csv
+│       │       │   ├── lkscbnt_token.json
+│       │       │   ├── locbnt.csv
+│       │       │   ├── locbnt_token.json
+│       │       │   ├── locibnt.csv
+│       │       │   ├── locibnt_token.json
+│       │       │   ├── loomusdb.csv
+│       │       │   ├── loomusdb_token.json
+│       │       │   ├── lrcbnt.csv
+│       │       │   ├── lrcbnt_token.json
+│       │       │   ├── madbnt.csv
+│       │       │   ├── madbnt_token.json
+│       │       │   ├── manabnt.csv
+│       │       │   ├── manabnt_token.json
+│       │       │   ├── maticbnt.csv
+│       │       │   ├── maticbnt_token.json
+│       │       │   ├── mdtbnt.csv
+│       │       │   ├── mdtbnt_token.json
+│       │       │   ├── metusdb.csv
+│       │       │   ├── metusdb_token.json
+│       │       │   ├── mfgbnt.csv
+│       │       │   ├── mfgbnt_token.json
+│       │       │   ├── mftbnt.csv
+│       │       │   ├── mftbnt_token.json
+│       │       │   ├── mgtbnt.csv
+│       │       │   ├── mgtbnt_1.csv
+│       │       │   ├── mgtbnt_1_token.json
+│       │       │   ├── mgtbnt_token.json
+│       │       │   ├── mkrbnt.csv
+│       │       │   ├── mkrbnt_token.json
+│       │       │   ├── mkrusdb.csv
+│       │       │   ├── mkrusdb_token.json
+│       │       │   ├── mlnbnt.csv
+│       │       │   ├── mlnbnt_token.json
+│       │       │   ├── mlnusdb.csv
+│       │       │   ├── mlnusdb_token.json
+│       │       │   ├── mntpbnt.csv
+│       │       │   ├── mntpbnt_token.json
+│       │       │   ├── morphbnt.csv
+│       │       │   ├── morphbnt_token.json
+│       │       │   ├── mptbnt.csv
+│       │       │   ├── mptbnt_token.json
+│       │       │   ├── mrgbnt.csv
+│       │       │   ├── mrgbnt_token.json
+│       │       │   ├── mrphbnt.csv
+│       │       │   ├── mrphbnt_token.json
+│       │       │   ├── mtabnt.csv
+│       │       │   ├── mtabnt_token.json
+│       │       │   ├── mtlbnt.csv
+│       │       │   ├── mtlbnt_token.json
+│       │       │   ├── mybbnt.csv
+│       │       │   ├── mybbnt_token.json
+│       │       │   ├── nexousdb.csv
+│       │       │   ├── nexousdb_token.json
+│       │       │   ├── nmrbnt.csv
+│       │       │   ├── nmrbnt_token.json
+│       │       │   ├── nmrusdb.csv
+│       │       │   ├── nmrusdb_token.json
+│       │       │   ├── oceanbnt.csv
+│       │       │   ├── oceanbnt_token.json
+│       │       │   ├── omgbnt.csv
+│       │       │   ├── omgbnt_token.json
+│       │       │   ├── omgusdb.csv
+│       │       │   ├── omgusdb_token.json
+│       │       │   ├── ongbnt.csv
+│       │       │   ├── ongbnt_token.json
+│       │       │   ├── paretowethusdcbnt.csv
+│       │       │   ├── paretowethusdcbnt_token.json
+│       │       │   ├── pbtcbnt.csv
+│       │       │   ├── pbtcbnt_token.json
+│       │       │   ├── pbtcusdb.csv
+│       │       │   ├── pbtcusdb_token.json
+│       │       │   ├── pegusdb.csv
+│       │       │   ├── pegusdb_token.json
+│       │       │   ├── plrbnt.csv
+│       │       │   ├── plrbnt_token.json
+│       │       │   ├── poabnt.csv
+│       │       │   ├── poabnt_token.json
+│       │       │   ├── powrbnt.csv
+│       │       │   ├── powrbnt_token.json
+│       │       │   ├── powrusdb.csv
+│       │       │   ├── powrusdb_token.json
+│       │       │   ├── prtlbnt.csv
+│       │       │   ├── prtlbnt_token.json
+│       │       │   ├── qdaobnt.csv
+│       │       │   ├── qdaobnt_token.json
+│       │       │   ├── rblxbnt.csv
+│       │       │   ├── rblxbnt_token.json
+│       │       │   ├── rcnbnt.csv
+│       │       │   ├── rcnbnt_token.json
+│       │       │   ├── rdnbnt.csv
+│       │       │   ├── rdnbnt_token.json
+│       │       │   ├── realbnt.csv
+│       │       │   ├── realbnt_token.json
+│       │       │   ├── refbnt.csv
+│       │       │   ├── refbnt_token.json
+│       │       │   ├── rembnt.csv
+│       │       │   ├── rembnt_token.json
+│       │       │   ├── renbnt.csv
+│       │       │   ├── renbnt_token.json
+│       │       │   ├── renbtcbnt.csv
+│       │       │   ├── renbtcbnt_token.json
+│       │       │   ├── repusdb.csv
+│       │       │   ├── repusdb_token.json
+│       │       │   ├── repuxbnt.csv
+│       │       │   ├── repuxbnt_token.json
+│       │       │   ├── reqbnt.csv
+│       │       │   ├── reqbnt_token.json
+│       │       │   ├── rlcbnt.csv
+│       │       │   ├── rlcbnt_token.json
+│       │       │   ├── rlcusdb.csv
+│       │       │   ├── rlcusdb_token.json
+│       │       │   ├── rplbnt.csv
+│       │       │   ├── rplbnt_token.json
+│       │       │   ├── rsrbnt.csv
+│       │       │   ├── rsrbnt_token.json
+│       │       │   ├── rstbnt.csv
+│       │       │   ├── rstbnt_token.json
+│       │       │   ├── rvtbnt.csv
+│       │       │   ├── rvtbnt_token.json
+│       │       │   ├── sanbnt.csv
+│       │       │   ├── sanbnt_token.json
+│       │       │   ├── sclbnt.csv
+│       │       │   ├── sclbnt_token.json
+│       │       │   ├── sigbnt.csv
+│       │       │   ├── sigbnt_token.json
+│       │       │   ├── sntbnt.csv
+│       │       │   ├── sntbnt_token.json
+│       │       │   ├── snxusdb.csv
+│       │       │   ├── snxusdb_token.json
+│       │       │   ├── spdbnt.csv
+│       │       │   ├── spdbnt_token.json
+│       │       │   ├── srmbnt.csv
+│       │       │   ├── srmbnt_token.json
+│       │       │   ├── srnbnt.csv
+│       │       │   ├── srnbnt_token.json
+│       │       │   ├── stacbnt.csv
+│       │       │   ├── stacbnt_token.json
+│       │       │   ├── stadifx.csv
+│       │       │   ├── stadifx_token.json
+│       │       │   ├── stakebnt.csv
+│       │       │   ├── stakebnt_token.json
+│       │       │   ├── stormbnt.csv
+│       │       │   ├── stormbnt_token.json
+│       │       │   ├── susdusdb.csv
+│       │       │   ├── susdusdb_token.json
+│       │       │   ├── svdbnt.csv
+│       │       │   ├── svdbnt_token.json
+│       │       │   ├── sxlbnt.csv
+│       │       │   ├── sxlbnt_token.json
+│       │       │   ├── syb7bnt.csv
+│       │       │   ├── syb7bnt_token.json
+│       │       │   ├── taasbnt.csv
+│       │       │   ├── taasbnt_token.json
+│       │       │   ├── tbcbnt.csv
+│       │       │   ├── tbcbnt_token.json
+│       │       │   ├── tbcusdb.csv
+│       │       │   ├── tbcusdb_token.json
+│       │       │   ├── tbxbnt.csv
+│       │       │   ├── tbxbnt_token.json
+│       │       │   ├── tknbnt.csv
+│       │       │   ├── tknbnt_token.json
+│       │       │   ├── tnsbnt.csv
+│       │       │   ├── tnsbnt_token.json
+│       │       │   ├── trbbnt.csv
+│       │       │   ├── trbbnt_token.json
+│       │       │   ├── tstst.csv
+│       │       │   ├── tstst_token.json
+│       │       │   ├── tusdusdb.csv
+│       │       │   ├── tusdusdb_token.json
+│       │       │   ├── ubtbnt.csv
+│       │       │   ├── ubtbnt_token.json
+│       │       │   ├── upbnt.csv
+│       │       │   ├── upbnt_token.json
+│       │       │   ├── uptbnt.csv
+│       │       │   ├── uptbnt_token.json
+│       │       │   ├── usdbbnt.csv
+│       │       │   ├── usdbbnt_token.json
+│       │       │   ├── usdcbnt.csv
+│       │       │   ├── usdcbnt_token.json
+│       │       │   ├── usdcusdb.csv
+│       │       │   ├── usdcusdb_token.json
+│       │       │   ├── usdqbnt.csv
+│       │       │   ├── usdqbnt_token.json
+│       │       │   ├── usdtbnt.csv
+│       │       │   ├── usdtbnt_token.json
+│       │       │   ├── usdtusdb.csv
+│       │       │   ├── usdtusdb_token.json
+│       │       │   ├── veebnt.csv
+│       │       │   ├── veebnt_token.json
+│       │       │   ├── vibbnt.csv
+│       │       │   ├── vibbnt_token.json
+│       │       │   ├── wandbnt.csv
+│       │       │   ├── wandbnt_token.json
+│       │       │   ├── wbtc.csv
+│       │       │   ├── wbtc_token.json
+│       │       │   ├── wingsbnt.csv
+│       │       │   ├── wingsbnt_token.json
+│       │       │   ├── x8xbnt.csv
+│       │       │   ├── x8xbnt_token.json
+│       │       │   ├── xbpbnt.csv
+│       │       │   ├── xbpbnt_token.json
+│       │       │   ├── xdcebnt.csv
+│       │       │   ├── xdcebnt_token.json
+│       │       │   ├── xiousdb.csv
+│       │       │   ├── xiousdb_token.json
+│       │       │   ├── xnkbnt.csv
+│       │       │   ├── xnkbnt_token.json
+│       │       │   ├── xpatbnt.csv
+│       │       │   ├── xpatbnt_token.json
+│       │       │   ├── xrtbnt.csv
+│       │       │   ├── xrtbnt_token.json
+│       │       │   ├── xzarbnt.csv
+│       │       │   ├── xzarbnt_token.json
+│       │       │   ├── yfibnt.csv
+│       │       │   ├── yfibnt_token.json
+│       │       │   ├── ziptbnt.csv
+│       │       │   ├── ziptbnt_token.json
+│       │       │   ├── zrxusdb.csv
+│       │       │   └── zrxusdb_token.json
+│       │       ├── roi/
+│       │       │   ├── 4xbbnt.csv
+│       │       │   ├── abxbnt.csv
+│       │       │   ├── acdbnt.csv
+│       │       │   ├── acptbnt.csv
+│       │       │   ├── agribnt.csv
+│       │       │   ├── aixbnt.csv
+│       │       │   ├── alephbnt.csv
+│       │       │   ├── amnbnt.csv
+│       │       │   ├── amplbnt.csv
+│       │       │   ├── ankbnt.csv
+│       │       │   ├── antbnt.csv
+│       │       │   ├── atsbnt.csv
+│       │       │   ├── aucbnt.csv
+│       │       │   ├── autobnt.csv
+│       │       │   ├── batbnt.csv
+│       │       │   ├── batusdb.csv
+│       │       │   ├── baxbnt.csv
+│       │       │   ├── bbobnt.csv
+│       │       │   ├── bnbbnt.csv
+│       │       │   ├── bntcap.csv
+│       │       │   ├── bntswrv.csv
+│       │       │   ├── boxxbnt.csv
+│       │       │   ├── busdusdb.csv
+│       │       │   ├── c20bnt.csv
+│       │       │   ├── catbnt.csv
+│       │       │   ├── cbltbnt.csv
+│       │       │   ├── ceekbnt.csv
+│       │       │   ├── ceekusdb.csv
+│       │       │   ├── celbnt.csv
+│       │       │   ├── cgtbnt.csv
+│       │       │   ├── cherrybnt.csv
+│       │       │   ├── commbnt.csv
+│       │       │   ├── cotbnt.csv
+│       │       │   ├── crtsbnt.csv
+│       │       │   ├── cvtbnt.csv
+│       │       │   ├── daibnt.csv
+│       │       │   ├── daibnt_1.csv
+│       │       │   ├── daiusdb.csv
+│       │       │   ├── danbnt.csv
+│       │       │   ├── databnt.csv
+│       │       │   ├── dgdbnt.csv
+│       │       │   ├── drgnbnt.csv
+│       │       │   ├── dtrcbnt.csv
+│       │       │   ├── dxdbnt.csv
+│       │       │   ├── dzarusdb.csv
+│       │       │   ├── efoodbnt.csv
+│       │       │   ├── eletbnt.csv
+│       │       │   ├── elfbnt.csv
+│       │       │   ├── emcobnt.csv
+│       │       │   ├── emit1usdb.csv
+│       │       │   ├── enjbnt.csv
+│       │       │   ├── enjusdb.csv
+│       │       │   ├── eszbnt.csv
+│       │       │   ├── ethbnt.csv
+│       │       │   ├── ethusdb.csv
+│       │       │   ├── eursbnt.csv
+│       │       │   ├── evedbnt.csv
+│       │       │   ├── ewtbbnt.csv
+│       │       │   ├── exobnt.csv
+│       │       │   ├── fcousdb.csv
+│       │       │   ├── fkxbnt.csv
+│       │       │   ├── flixxbnt.csv
+│       │       │   ├── fthbnt.csv
+│       │       │   ├── fttbnt.csv
+│       │       │   ├── ftxbnt.csv
+│       │       │   ├── fxcbnt.csv
+│       │       │   ├── gesbnt.csv
+│       │       │   ├── gldrbnt.csv
+│       │       │   ├── gnobnt.csv
+│       │       │   ├── gridbnt.csv
+│       │       │   ├── grigusdb.csv
+│       │       │   ├── gtobnt.csv
+│       │       │   ├── hedgbnt.csv
+│       │       │   ├── hotbnt.csv
+│       │       │   ├── invoxbnt.csv
+│       │       │   ├── j8tbnt.csv
+│       │       │   ├── jntre.csv
+│       │       │   ├── jrt90bnt10.csv
+│       │       │   ├── jrtbnt.csv
+│       │       │   ├── jrtusdb.csv
+│       │       │   ├── kinbnt.csv
+│       │       │   ├── kncbnt.csv
+│       │       │   ├── kncusdb.csv
+│       │       │   ├── ldcbnt.csv
+│       │       │   ├── linkbnt.csv
+│       │       │   ├── lkscbnt.csv
+│       │       │   ├── locbnt.csv
+│       │       │   ├── locibnt.csv
+│       │       │   ├── loomusdb.csv
+│       │       │   ├── lrcbnt.csv
+│       │       │   ├── madbnt.csv
+│       │       │   ├── manabnt.csv
+│       │       │   ├── maticbnt.csv
+│       │       │   ├── mdtbnt.csv
+│       │       │   ├── metusdb.csv
+│       │       │   ├── mfgbnt.csv
+│       │       │   ├── mftbnt.csv
+│       │       │   ├── mgtbnt.csv
+│       │       │   ├── mgtbnt_1.csv
+│       │       │   ├── mkrbnt.csv
+│       │       │   ├── mkrusdb.csv
+│       │       │   ├── mlnbnt.csv
+│       │       │   ├── mlnusdb.csv
+│       │       │   ├── mntpbnt.csv
+│       │       │   ├── morphbnt.csv
+│       │       │   ├── mptbnt.csv
+│       │       │   ├── mrgbnt.csv
+│       │       │   ├── mrphbnt.csv
+│       │       │   ├── mtabnt.csv
+│       │       │   ├── mtlbnt.csv
+│       │       │   ├── mybbnt.csv
+│       │       │   ├── nexousdb.csv
+│       │       │   ├── nmrbnt.csv
+│       │       │   ├── nmrusdb.csv
+│       │       │   ├── oceanbnt.csv
+│       │       │   ├── omgbnt.csv
+│       │       │   ├── omgusdb.csv
+│       │       │   ├── ongbnt.csv
+│       │       │   ├── paretowethusdcbnt.csv
+│       │       │   ├── pbtcbnt.csv
+│       │       │   ├── pbtcusdb.csv
+│       │       │   ├── pegusdb.csv
+│       │       │   ├── plrbnt.csv
+│       │       │   ├── poabnt.csv
+│       │       │   ├── powrbnt.csv
+│       │       │   ├── powrusdb.csv
+│       │       │   ├── prtlbnt.csv
+│       │       │   ├── qdaobnt.csv
+│       │       │   ├── rblxbnt.csv
+│       │       │   ├── rcnbnt.csv
+│       │       │   ├── rdnbnt.csv
+│       │       │   ├── realbnt.csv
+│       │       │   ├── refbnt.csv
+│       │       │   ├── rembnt.csv
+│       │       │   ├── renbnt.csv
+│       │       │   ├── renbtcbnt.csv
+│       │       │   ├── repusdb.csv
+│       │       │   ├── repuxbnt.csv
+│       │       │   ├── reqbnt.csv
+│       │       │   ├── rlcbnt.csv
+│       │       │   ├── rlcusdb.csv
+│       │       │   ├── rplbnt.csv
+│       │       │   ├── rsrbnt.csv
+│       │       │   ├── rstbnt.csv
+│       │       │   ├── rvtbnt.csv
+│       │       │   ├── sanbnt.csv
+│       │       │   ├── sclbnt.csv
+│       │       │   ├── sigbnt.csv
+│       │       │   ├── sntbnt.csv
+│       │       │   ├── snxusdb.csv
+│       │       │   ├── spdbnt.csv
+│       │       │   ├── srmbnt.csv
+│       │       │   ├── srnbnt.csv
+│       │       │   ├── stacbnt.csv
+│       │       │   ├── stadifx.csv
+│       │       │   ├── stakebnt.csv
+│       │       │   ├── stormbnt.csv
+│       │       │   ├── susdusdb.csv
+│       │       │   ├── svdbnt.csv
+│       │       │   ├── sxlbnt.csv
+│       │       │   ├── syb7bnt.csv
+│       │       │   ├── taasbnt.csv
+│       │       │   ├── tbcbnt.csv
+│       │       │   ├── tbcusdb.csv
+│       │       │   ├── tbxbnt.csv
+│       │       │   ├── tknbnt.csv
+│       │       │   ├── tnsbnt.csv
+│       │       │   ├── trbbnt.csv
+│       │       │   ├── tstst.csv
+│       │       │   ├── tusdusdb.csv
+│       │       │   ├── ubtbnt.csv
+│       │       │   ├── upbnt.csv
+│       │       │   ├── uptbnt.csv
+│       │       │   ├── usdary.csv
+│       │       │   ├── usdbbnt.csv
+│       │       │   ├── usdcbnt.csv
+│       │       │   ├── usdcusdb.csv
+│       │       │   ├── usdqbnt.csv
+│       │       │   ├── usdray1.csv
+│       │       │   ├── usdtbnt.csv
+│       │       │   ├── usdtusdb.csv
+│       │       │   ├── veebnt.csv
+│       │       │   ├── vibbnt.csv
+│       │       │   ├── wandbnt.csv
+│       │       │   ├── wbtc.csv
+│       │       │   ├── wingsbnt.csv
+│       │       │   ├── x8xbnt.csv
+│       │       │   ├── xbpbnt.csv
+│       │       │   ├── xdcebnt.csv
+│       │       │   ├── xiousdb.csv
+│       │       │   ├── xnkbnt.csv
+│       │       │   ├── xpatbnt.csv
+│       │       │   ├── xrtbnt.csv
+│       │       │   ├── xzarbnt.csv
+│       │       │   ├── yfibnt.csv
+│       │       │   ├── ziptbnt.csv
+│       │       │   └── zrxusdb.csv
+│       │       ├── tokens.json
+│       │       └── usdb/
+│       │           ├── liquidity.csv
+│       │           └── total_volume.csv
+│       └── uniswap/
+│           └── data/
+│               ├── liquidity.csv
+│               ├── providers/
+│               │   ├── adai.csv
+│               │   ├── almx.csv
+│               │   ├── ampl.csv
+│               │   ├── anj.csv
+│               │   ├── ant.csv
+│               │   ├── ast.csv
+│               │   ├── auc.csv
+│               │   ├── band.csv
+│               │   ├── bat.csv
+│               │   ├── bcpt.csv
+│               │   ├── bct.csv
+│               │   ├── bee.csv
+│               │   ├── blt.csv
+│               │   ├── bnb.csv
+│               │   ├── bnt.csv
+│               │   ├── boi.csv
+│               │   ├── btu.csv
+│               │   ├── buidl.csv
+│               │   ├── bunz.csv
+│               │   ├── calvin.csv
+│               │   ├── cdai.csv
+│               │   ├── ch-zg1235d.csv
+│               │   ├── chai.csv
+│               │   ├── cnac.csv
+│               │   ├── cncc.csv
+│               │   ├── colr.csv
+│               │   ├── credit.csv
+│               │   ├── csai.csv
+│               │   ├── cst.csv
+│               │   ├── cvc.csv
+│               │   ├── dai.csv
+│               │   ├── dank.csv
+│               │   ├── data.csv
+│               │   ├── dc.csv
+│               │   ├── dgx.csv
+│               │   ├── dip.csv
+│               │   ├── dmex.csv
+│               │   ├── drj.csv
+│               │   ├── drt.csv
+│               │   ├── enj.csv
+│               │   ├── erc20.csv
+│               │   ├── ethusdadl4.csv
+│               │   ├── fame.csv
+│               │   ├── flip.csv
+│               │   ├── fnd.csv
+│               │   ├── foam.csv
+│               │   ├── fsnt.csv
+│               │   ├── ftm.csv
+│               │   ├── fun.csv
+│               │   ├── gen.csv
+│               │   ├── gno.csv
+│               │   ├── hedg.csv
+│               │   ├── hex.csv
+│               │   ├── hour.csv
+│               │   ├── hum.csv
+│               │   ├── hyd.csv
+│               │   ├── ick.csv
+│               │   ├── immo.csv
+│               │   ├── isla.csv
+│               │   ├── jrt.csv
+│               │   ├── jsh.csv
+│               │   ├── kerman.csv
+│               │   ├── kern.csv
+│               │   ├── kin.csv
+│               │   ├── knc.csv
+│               │   ├── ldr.csv
+│               │   ├── lend.csv
+│               │   ├── link.csv
+│               │   ├── lpt.csv
+│               │   ├── lrc.csv
+│               │   ├── lsd.csv
+│               │   ├── mcx.csv
+│               │   ├── minds.csv
+│               │   ├── mkr.csv
+│               │   ├── mln.csv
+│               │   ├── mtb18.csv
+│               │   ├── mtb19.csv
+│               │   ├── mtb20.csv
+│               │   ├── ngnt.csv
+│               │   ├── nmr.csv
+│               │   ├── obal$9.50put082120.csv
+│               │   ├── odpi$100call112020.csv
+│               │   ├── odpi$60put112020.csv
+│               │   ├── oeth$100put042420.csv
+│               │   ├── oeth$150put042420.csv
+│               │   ├── oeth$150put052920.csv
+│               │   ├── oeth$240put061920.csv
+│               │   ├── oeth$400call112720.csv
+│               │   ├── oeth$500call112020.csv
+│               │   ├── ouni$2.5put101620.csv
+│               │   ├── ouni$2.5put112020.csv
+│               │   ├── ouni$4call112020.csv
+│               │   ├── oweth$340put112720.csv
+│               │   ├── oweth$360put122520.csv
+│               │   ├── oweth$380put111320.csv
+│               │   ├── oweth$400put110620.csv
+│               │   ├── owl.csv
+│               │   ├── pan.csv
+│               │   ├── pas.csv
+│               │   ├── pasg.csv
+│               │   ├── pass.csv
+│               │   ├── pdc.csv
+│               │   ├── qnt.csv
+│               │   ├── rcn.csv
+│               │   ├── rdr.csv
+│               │   ├── realtoken-10024-10028-appoline-st-detroit-mi.csv
+│               │   ├── realtoken-15634-liberal-st-detroit-mi.csv
+│               │   ├── realtoken-16200-fullerton-ave-detroit-mi.csv
+│               │   ├── realtoken-18276-appoline-st-detroit-mi.csv
+│               │   ├── realtoken-18900-mansfield-st-detroit-mi.csv
+│               │   ├── realtoken-20200-lesure-st-detroit-mi.csv
+│               │   ├── realtoken-25097-andover-dr-dearborn-mi.csv
+│               │   ├── realtoken-5942-audubon-rd-detroit-mi.csv
+│               │   ├── realtoken-8342-schaefer-hwy-detroit-mi.csv
+│               │   ├── realtoken-9336-patton-st-detroit-mi.csv
+│               │   ├── realtoken-9943-marlowe-st-detroit-mi.csv
+│               │   ├── ren.csv
+│               │   ├── rep.csv
+│               │   ├── rpl.csv
+│               │   ├── rsr.csv
+│               │   ├── rwrd.csv
+│               │   ├── sai.csv
+│               │   ├── saturn.csv
+│               │   ├── scb.csv
+│               │   ├── seeds.csv
+│               │   ├── sent.csv
+│               │   ├── seth.csv
+│               │   ├── sethold.csv
+│               │   ├── shuf.csv
+│               │   ├── sin.csv
+│               │   ├── slp.csv
+│               │   ├── snt.csv
+│               │   ├── snx.csv
+│               │   ├── socks.csv
+│               │   ├── sp.csv
+│               │   ├── spank.csv
+│               │   ├── ssle.csv
+│               │   ├── stx.csv
+│               │   ├── susd.csv
+│               │   ├── susdold.csv
+│               │   ├── swt.csv
+│               │   ├── test.csv
+│               │   ├── thedao.csv
+│               │   ├── time.csv
+│               │   ├── tkn.csv
+│               │   ├── tokenfactory.csv
+│               │   ├── tom.csv
+│               │   ├── trst.csv
+│               │   ├── tru.csv
+│               │   ├── tusdold.csv
+│               │   ├── ubt.csv
+│               │   ├── ult(st).csv
+│               │   ├── uni-v1.csv
+│               │   ├── uos.csv
+│               │   ├── usdc.csv
+│               │   ├── vee.csv
+│               │   ├── vxv.csv
+│               │   ├── wbtc.csv
+│               │   ├── weth.csv
+│               │   ├── xio.csv
+│               │   ├── xyo.csv
+│               │   ├── zcc.csv
+│               │   └── zrx.csv
+│               ├── roi/
+│               │   ├── adai.csv
+│               │   ├── almx.csv
+│               │   ├── ampl.csv
+│               │   ├── anj.csv
+│               │   ├── ant.csv
+│               │   ├── ast.csv
+│               │   ├── auc.csv
+│               │   ├── band.csv
+│               │   ├── bat.csv
+│               │   ├── bcpt.csv
+│               │   ├── bct.csv
+│               │   ├── bee.csv
+│               │   ├── blt.csv
+│               │   ├── bnb.csv
+│               │   ├── bnt.csv
+│               │   ├── boi.csv
+│               │   ├── btu.csv
+│               │   ├── buidl.csv
+│               │   ├── bunz.csv
+│               │   ├── calvin.csv
+│               │   ├── cdai.csv
+│               │   ├── ch-zg1235d.csv
+│               │   ├── chai.csv
+│               │   ├── cnac.csv
+│               │   ├── cncc.csv
+│               │   ├── colr.csv
+│               │   ├── credit.csv
+│               │   ├── csai.csv
+│               │   ├── cst.csv
+│               │   ├── cvc.csv
+│               │   ├── dai.csv
+│               │   ├── dank.csv
+│               │   ├── data.csv
+│               │   ├── dc.csv
+│               │   ├── dgx.csv
+│               │   ├── dip.csv
+│               │   ├── dmex.csv
+│               │   ├── drj.csv
+│               │   ├── drt.csv
+│               │   ├── enj.csv
+│               │   ├── erc20.csv
+│               │   ├── ethusdadl4.csv
+│               │   ├── fame.csv
+│               │   ├── flip.csv
+│               │   ├── fnd.csv
+│               │   ├── foam.csv
+│               │   ├── fsnt.csv
+│               │   ├── ftm.csv
+│               │   ├── fun.csv
+│               │   ├── gen.csv
+│               │   ├── gno.csv
+│               │   ├── hedg.csv
+│               │   ├── hex.csv
+│               │   ├── hour.csv
+│               │   ├── hum.csv
+│               │   ├── hyd.csv
+│               │   ├── ick.csv
+│               │   ├── immo.csv
+│               │   ├── isla.csv
+│               │   ├── jrt.csv
+│               │   ├── jsh.csv
+│               │   ├── kerman.csv
+│               │   ├── kern.csv
+│               │   ├── kin.csv
+│               │   ├── knc.csv
+│               │   ├── ldr.csv
+│               │   ├── lend.csv
+│               │   ├── link.csv
+│               │   ├── lpt.csv
+│               │   ├── lrc.csv
+│               │   ├── lsd.csv
+│               │   ├── mcx.csv
+│               │   ├── minds.csv
+│               │   ├── mkr.csv
+│               │   ├── mln.csv
+│               │   ├── mtb18.csv
+│               │   ├── mtb19.csv
+│               │   ├── mtb20.csv
+│               │   ├── ngnt.csv
+│               │   ├── nmr.csv
+│               │   ├── obal$9.50put082120.csv
+│               │   ├── odpi$100call112020.csv
+│               │   ├── odpi$60put112020.csv
+│               │   ├── oeth$100put042420.csv
+│               │   ├── oeth$150put042420.csv
+│               │   ├── oeth$150put052920.csv
+│               │   ├── oeth$240put061920.csv
+│               │   ├── oeth$400call112720.csv
+│               │   ├── oeth$500call112020.csv
+│               │   ├── ouni$2.5put101620.csv
+│               │   ├── ouni$2.5put112020.csv
+│               │   ├── ouni$4call112020.csv
+│               │   ├── oweth$340put112720.csv
+│               │   ├── oweth$360put122520.csv
+│               │   ├── oweth$380put111320.csv
+│               │   ├── oweth$400put110620.csv
+│               │   ├── owl.csv
+│               │   ├── pan.csv
+│               │   ├── pas.csv
+│               │   ├── pasg.csv
+│               │   ├── pass.csv
+│               │   ├── pdc.csv
+│               │   ├── qnt.csv
+│               │   ├── rcn.csv
+│               │   ├── rdr.csv
+│               │   ├── realtoken-10024-10028-appoline-st-detroit-mi.csv
+│               │   ├── realtoken-15634-liberal-st-detroit-mi.csv
+│               │   ├── realtoken-16200-fullerton-ave-detroit-mi.csv
+│               │   ├── realtoken-18276-appoline-st-detroit-mi.csv
+│               │   ├── realtoken-18900-mansfield-st-detroit-mi.csv
+│               │   ├── realtoken-20200-lesure-st-detroit-mi.csv
+│               │   ├── realtoken-25097-andover-dr-dearborn-mi.csv
+│               │   ├── realtoken-5942-audubon-rd-detroit-mi.csv
+│               │   ├── realtoken-8342-schaefer-hwy-detroit-mi.csv
+│               │   ├── realtoken-9336-patton-st-detroit-mi.csv
+│               │   ├── realtoken-9943-marlowe-st-detroit-mi.csv
+│               │   ├── ren.csv
+│               │   ├── rep.csv
+│               │   ├── rpl.csv
+│               │   ├── rsr.csv
+│               │   ├── rwrd.csv
+│               │   ├── sai.csv
+│               │   ├── saturn.csv
+│               │   ├── scb.csv
+│               │   ├── seeds.csv
+│               │   ├── sent.csv
+│               │   ├── seth.csv
+│               │   ├── sethold.csv
+│               │   ├── shuf.csv
+│               │   ├── sin.csv
+│               │   ├── slp.csv
+│               │   ├── snt.csv
+│               │   ├── snx.csv
+│               │   ├── socks.csv
+│               │   ├── sp.csv
+│               │   ├── spank.csv
+│               │   ├── ssle.csv
+│               │   ├── stx.csv
+│               │   ├── susd.csv
+│               │   ├── susdold.csv
+│               │   ├── swt.csv
+│               │   ├── test.csv
+│               │   ├── thedao.csv
+│               │   ├── time.csv
+│               │   ├── tkn.csv
+│               │   ├── tokenfactory.csv
+│               │   ├── tom.csv
+│               │   ├── trst.csv
+│               │   ├── tru.csv
+│               │   ├── tusdold.csv
+│               │   ├── ubt.csv
+│               │   ├── ult(st).csv
+│               │   ├── uni-v1.csv
+│               │   ├── uos.csv
+│               │   ├── usdc.csv
+│               │   ├── vee.csv
+│               │   ├── vxv.csv
+│               │   ├── wbtc.csv
+│               │   ├── weth.csv
+│               │   ├── xio.csv
+│               │   ├── xyo.csv
+│               │   ├── zcc.csv
+│               │   └── zrx.csv
+│               ├── tokens.json
+│               ├── total_volume.csv
+│               └── volume/
+│                   ├── adai.csv
+│                   ├── almx.csv
+│                   ├── ampl.csv
+│                   ├── anj.csv
+│                   ├── ant.csv
+│                   ├── ast.csv
+│                   ├── auc.csv
+│                   ├── band.csv
+│                   ├── bat.csv
+│                   ├── bcpt.csv
+│                   ├── bct.csv
+│                   ├── bee.csv
+│                   ├── blt.csv
+│                   ├── bnb.csv
+│                   ├── bnt.csv
+│                   ├── boi.csv
+│                   ├── btu.csv
+│                   ├── buidl.csv
+│                   ├── bunz.csv
+│                   ├── calvin.csv
+│                   ├── cdai.csv
+│                   ├── ch-zg1235d.csv
+│                   ├── chai.csv
+│                   ├── cnac.csv
+│                   ├── cncc.csv
+│                   ├── colr.csv
+│                   ├── credit.csv
+│                   ├── csai.csv
+│                   ├── cst.csv
+│                   ├── cvc.csv
+│                   ├── dai.csv
+│                   ├── dank.csv
+│                   ├── data.csv
+│                   ├── dc.csv
+│                   ├── dgx.csv
+│                   ├── dip.csv
+│                   ├── dmex.csv
+│                   ├── drj.csv
+│                   ├── drt.csv
+│                   ├── enj.csv
+│                   ├── erc20.csv
+│                   ├── ethusdadl4.csv
+│                   ├── fame.csv
+│                   ├── flip.csv
+│                   ├── fnd.csv
+│                   ├── foam.csv
+│                   ├── fsnt.csv
+│                   ├── ftm.csv
+│                   ├── fun.csv
+│                   ├── gen.csv
+│                   ├── gno.csv
+│                   ├── hedg.csv
+│                   ├── hex.csv
+│                   ├── hour.csv
+│                   ├── hum.csv
+│                   ├── hyd.csv
+│                   ├── ick.csv
+│                   ├── immo.csv
+│                   ├── isla.csv
+│                   ├── jrt.csv
+│                   ├── jsh.csv
+│                   ├── kerman.csv
+│                   ├── kern.csv
+│                   ├── kin.csv
+│                   ├── knc.csv
+│                   ├── ldr.csv
+│                   ├── lend.csv
+│                   ├── link.csv
+│                   ├── lpt.csv
+│                   ├── lrc.csv
+│                   ├── lsd.csv
+│                   ├── mcx.csv
+│                   ├── minds.csv
+│                   ├── mkr.csv
+│                   ├── mln.csv
+│                   ├── mtb18.csv
+│                   ├── mtb19.csv
+│                   ├── mtb20.csv
+│                   ├── ngnt.csv
+│                   ├── nmr.csv
+│                   ├── obal$9.50put082120.csv
+│                   ├── odpi$100call112020.csv
+│                   ├── odpi$60put112020.csv
+│                   ├── oeth$100put042420.csv
+│                   ├── oeth$150put042420.csv
+│                   ├── oeth$150put052920.csv
+│                   ├── oeth$240put061920.csv
+│                   ├── oeth$400call112720.csv
+│                   ├── oeth$500call112020.csv
+│                   ├── ouni$2.5put101620.csv
+│                   ├── ouni$2.5put112020.csv
+│                   ├── ouni$4call112020.csv
+│                   ├── oweth$340put112720.csv
+│                   ├── oweth$360put122520.csv
+│                   ├── oweth$380put111320.csv
+│                   ├── oweth$400put110620.csv
+│                   ├── owl.csv
+│                   ├── pan.csv
+│                   ├── pas.csv
+│                   ├── pasg.csv
+│                   ├── pass.csv
+│                   ├── pdc.csv
+│                   ├── qnt.csv
+│                   ├── rcn.csv
+│                   ├── rdr.csv
+│                   ├── realtoken-10024-10028-appoline-st-detroit-mi.csv
+│                   ├── realtoken-15634-liberal-st-detroit-mi.csv
+│                   ├── realtoken-16200-fullerton-ave-detroit-mi.csv
+│                   ├── realtoken-18276-appoline-st-detroit-mi.csv
+│                   ├── realtoken-18900-mansfield-st-detroit-mi.csv
+│                   ├── realtoken-20200-lesure-st-detroit-mi.csv
+│                   ├── realtoken-25097-andover-dr-dearborn-mi.csv
+│                   ├── realtoken-5942-audubon-rd-detroit-mi.csv
+│                   ├── realtoken-8342-schaefer-hwy-detroit-mi.csv
+│                   ├── realtoken-9336-patton-st-detroit-mi.csv
+│                   ├── realtoken-9943-marlowe-st-detroit-mi.csv
+│                   ├── ren.csv
+│                   ├── rep.csv
+│                   ├── rpl.csv
+│                   ├── rsr.csv
+│                   ├── rwrd.csv
+│                   ├── sai.csv
+│                   ├── saturn.csv
+│                   ├── scb.csv
+│                   ├── seeds.csv
+│                   ├── sent.csv
+│                   ├── seth.csv
+│                   ├── sethold.csv
+│                   ├── shuf.csv
+│                   ├── sin.csv
+│                   ├── slp.csv
+│                   ├── snt.csv
+│                   ├── snx.csv
+│                   ├── socks.csv
+│                   ├── sp.csv
+│                   ├── spank.csv
+│                   ├── ssle.csv
+│                   ├── stx.csv
+│                   ├── susd.csv
+│                   ├── susdold.csv
+│                   ├── swt.csv
+│                   ├── test.csv
+│                   ├── thedao.csv
+│                   ├── time.csv
+│                   ├── tkn.csv
+│                   ├── tokenfactory.csv
+│                   ├── tom.csv
+│                   ├── trst.csv
+│                   ├── tru.csv
+│                   ├── tusdold.csv
+│                   ├── ubt.csv
+│                   ├── ult(st).csv
+│                   ├── uni-v1.csv
+│                   ├── uos.csv
+│                   ├── usdc.csv
+│                   ├── vee.csv
+│                   ├── vxv.csv
+│                   ├── wbtc.csv
+│                   ├── weth.csv
+│                   ├── xio.csv
+│                   ├── xyo.csv
+│                   ├── zcc.csv
+│                   └── zrx.csv
+├── index.txt
+├── package.json
+└── visualization-tools/
+    ├── Dockerfile
+    ├── README.md
+    ├── TokenInfo.py
+    ├── backtest.LO_MCD_SMA_STF_Perct_TS.py
+    ├── contract_reader.py
+    ├── data/
+    │   ├── asset1_input.json
+    │   ├── asset1_solution.json
+    │   ├── kraken_input.json
+    │   └── kraken_solution.json
+    ├── demo.py
+    ├── generate_plot_for_all_pairs.py
+    ├── plot_order_graph.py
+    ├── plot_orderbook_tokenpair.py
+    ├── plot_solution_graph.py
+    ├── plot_utils.py
+    ├── requirements.txt
+    ├── structs.py
+    ├── uniswap.analyze.py
+    └── util.py
+
+34 directories, 1140 files

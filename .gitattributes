@@ -12,3 +12,4 @@ LICENSE* text
 test/ export-ignore
 *.md  export-ignore
 
+*.csv filter=lfs diff=lfs merge=lfs -text
