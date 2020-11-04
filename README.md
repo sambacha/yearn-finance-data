@@ -1,5 +1,14 @@
 ## General Data Types
 
+### Data Percision 
+
+#### GraphQL / Javascript
+
+The limited precision of numbers in JavaScript is Number.MAX_SAFE_INTEGER nanoseconds is about 104 days
+
+
+### Exchange
+
 | **Field** | **Type** | **Description** |
 | --- | --- | --- |
 | data | object | The trade data corresponding to the columns fields\. |
