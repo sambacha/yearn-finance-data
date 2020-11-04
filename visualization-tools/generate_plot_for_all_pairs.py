@@ -15,7 +15,8 @@ if __name__ == "__main__":
 
     # Process command line arguments.
     parser = argparse.ArgumentParser(
-        description="Input file and output directory parser.")
+        description="Input file and output directory parser."
+    )
 
     parser.add_argument(
         "--jsonFile",
@@ -51,10 +52,12 @@ if __name__ == "__main__":
     max_token_id = 16
 
     # Plot.
-    plot_args = [("token" + str(t1), "token" + str(t2))
-                 for t1 in range(0, max_token_id)
-                 for t2 in range(0, max_token_id)
-                 if t1 != t2]
+    plot_args = [
+        ("token" + str(t1), "token" + str(t2))
+        for t1 in range(0, max_token_id)
+        for t2 in range(0, max_token_id)
+        if t1 != t2
+    ]
 
     def plot(args):
         generate_plot(*args, inst["orders"], output_dir, False, auto_open=False)

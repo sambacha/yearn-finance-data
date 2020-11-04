@@ -21,10 +21,12 @@ import TokenInfo
 decimal.getcontext().prec = 100
 
 
-def generate_plot(nr_orders_tokenpair: Dict[EDGE_TYPE, int],
-                  output_dir: str = "./",
-                  ipython: bool = False,
-                  **kwargs):
+def generate_plot(
+    nr_orders_tokenpair: Dict[EDGE_TYPE, int],
+    output_dir: str = "./",
+    ipython: bool = False,
+    **kwargs
+):
     """Generate a token-order-graph plot using plotly.
 
     Args:
@@ -50,30 +52,30 @@ def generate_plot(nr_orders_tokenpair: Dict[EDGE_TYPE, int],
     node_labels = {t: t for t in tokens}
 
     node_hovers = {
-        t: "=== %s ===<br># orders : %d" % (t, node_weights[t])
-        for t in node_weights
+        t: "=== %s ===<br># orders : %d" % (t, node_weights[t]) for t in node_weights
     }
 
     edge_weights = nr_orders_tokenpair
 
     edge_hovers = {
-        (t1, t2):
-        "=== %s/%s ===<br># orders : %d" % (t1, t2, edge_weights[t1, t2])
+        (t1, t2): "=== %s/%s ===<br># orders : %d" % (t1, t2, edge_weights[t1, t2])
         for (t1, t2) in edge_weights
     }
 
     # Plot.
-    plot_network(tokens,
-                 list(edge_weights.keys()),
-                 node_weights=node_weights,
-                 node_labels=node_labels,
-                 node_hovers=node_hovers,
-                 edge_weights=edge_weights,
-                 edge_hovers=edge_hovers,
-                 plot_title="token-order-graph",
-                 output_dir=output_dir,
-                 ipython=ipython,
-                 **kwargs)
+    plot_network(
+        tokens,
+        list(edge_weights.keys()),
+        node_weights=node_weights,
+        node_labels=node_labels,
+        node_hovers=node_hovers,
+        edge_weights=edge_weights,
+        edge_hovers=edge_hovers,
+        plot_title="token-order-graph",
+        output_dir=output_dir,
+        ipython=ipython,
+        **kwargs
+    )
 
     return
 
@@ -83,7 +85,8 @@ if __name__ == "__main__":
 
     # Process command line arguments.
     parser = argparse.ArgumentParser(
-        description="Input file and output directory parser.")
+        description="Input file and output directory parser."
+    )
 
     parser.add_argument(
         "--jsonFile",

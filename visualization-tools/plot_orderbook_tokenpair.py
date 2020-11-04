@@ -19,12 +19,14 @@ import util
 import TokenInfo
 
 
-def generate_plot(t1: str,
-                  t2: str,
-                  orders: List[Dict],
-                  output_dir: str = "./",
-                  ipython: bool = False,
-                  **kwargs):
+def generate_plot(
+    t1: str,
+    t2: str,
+    orders: List[Dict],
+    output_dir: str = "./",
+    ipython: bool = False,
+    **kwargs
+):
     """Generate a token-order-graph plot using plotly.
 
     Args:
@@ -48,15 +50,16 @@ def generate_plot(t1: str,
 
         # Get amounts scaled to human-readable values.
         sell_amount = Decimal(o["sellAmount"]) / Decimal(
-            10**util.get_token_decimals(tS))
+            10 ** util.get_token_decimals(tS)
+        )
         buy_amount = Decimal(o["buyAmount"]) / Decimal(
-            10**util.get_token_decimals(tB))
+            10 ** util.get_token_decimals(tB)
+        )
         if buy_amount != 0:
             total_amounts[tB] += buy_amount
             total_amounts[tS] += sell_amount
 
-            sell_limits_amounts[tS].append(
-                (sell_amount / buy_amount, sell_amount))
+            sell_limits_amounts[tS].append((sell_amount / buy_amount, sell_amount))
 
     # Skip, if no orders for given token pair.
     if len(sell_limits_amounts) == 0:
@@ -87,13 +90,10 @@ def generate_plot(t1: str,
         return [f - eps_corner, f, f + eps_corner]
 
     xrates = np.clip(
-        sum([
-            corner(float(s[0] / fee_multiplier))
-            for s in sell_limits_amounts[t1]
-        ], []) + sum([
-            corner(float(fee_multiplier / s[0]))
-            for s in sell_limits_amounts[t2]
-        ], []),
+        sum([corner(float(s[0] / fee_multiplier)) for s in sell_limits_amounts[t1]], [])
+        + sum(
+            [corner(float(fee_multiplier / s[0])) for s in sell_limits_amounts[t2]], []
+        ),
         xrate_LB,
         xrate_UB,
     )
@@ -106,9 +106,7 @@ def generate_plot(t1: str,
     t2_name = util.get_token_name(t2)
 
     # Compute cumulated sell/buy amounts on token pair per xrate sample point.
-    cumulated_sell_amounts = {
-        t: np.zeros(len(xrates)) for t in [t1_name, t2_name]
-    }
+    cumulated_sell_amounts = {t: np.zeros(len(xrates)) for t in [t1_name, t2_name]}
 
     for (limit, sell_amount) in sell_limits_amounts[t1]:
         _executable = np.where(xrates <= limit / fee_multiplier, 1, 0)
@@ -124,15 +122,17 @@ def generate_plot(t1: str,
     }
 
     # Plot.
-    plot_orderbook(t1_name,
-                   t2_name,
-                   xrates,
-                   cumulated_sell_amounts,
-                   cumulated_buy_amounts,
-                   plot_title="orderbook-%s-%s" % (t1_name, t2_name),
-                   output_dir=output_dir,
-                   ipython=ipython,
-                   **kwargs)
+    plot_orderbook(
+        t1_name,
+        t2_name,
+        xrates,
+        cumulated_sell_amounts,
+        cumulated_buy_amounts,
+        plot_title="orderbook-%s-%s" % (t1_name, t2_name),
+        output_dir=output_dir,
+        ipython=ipython,
+        **kwargs
+    )
 
     return
 
@@ -144,7 +144,8 @@ if __name__ == "__main__":
 
     # Process command line arguments.
     parser = argparse.ArgumentParser(
-        description="Input file and output directory parser.")
+        description="Input file and output directory parser."
+    )
 
     parser.add_argument("t1", type=str, help="The name of the first token.")
 
@@ -198,10 +199,7 @@ if __name__ == "__main__":
     # Get token IDs.
     t1 = util.get_token_ID(args.t1)
     t2 = util.get_token_ID(args.t2)
-    orders = [
-        o for o in inst["orders"]
-        if {t1, t2} == {o["sellToken"], o["buyToken"]}
-    ]
+    orders = [o for o in inst["orders"] if {t1, t2} == {o["sellToken"], o["buyToken"]}]
     logging.info("=== ORDERS (%d) ===" % len(orders))
     util.log_orders(orders)
 

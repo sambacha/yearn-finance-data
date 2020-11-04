@@ -73,13 +73,14 @@ def plot_network(
 
         if min(node_weights.values()) < wmin:
             node_weights = {
-                nID: wmax - (wmax - node_weights[nID]) /
-                (wmax - min(node_weights.values())) * (wmax - wmin)
+                nID: wmax
+                - (wmax - node_weights[nID])
+                / (wmax - min(node_weights.values()))
+                * (wmax - wmin)
                 for nID in nodes
             }
 
-        assert min(node_weights.values()) >= wmin and max(
-            node_weights.values()) <= wmax
+        assert min(node_weights.values()) >= wmin and max(node_weights.values()) <= wmax
 
     # Init node hovers, if required.
     node_hovers = {
@@ -88,8 +89,7 @@ def plot_network(
 
     # Init node labels, if required.
     node_labels = {
-        nID: node_labels[nID] if nID in node_labels else str(nID)
-        for nID in nodes
+        nID: node_labels[nID] if nID in node_labels else str(nID) for nID in nodes
     }
 
     # Node information.
@@ -139,18 +139,19 @@ def plot_network(
             }
         if min(edge_weights.values()) < wL:
             edge_weights = {
-                eID: wU - (wU - edge_weights[eID]) /
-                (wU - min(edge_weights.values())) * (wU - wL) for eID in edges
+                eID: wU
+                - (wU - edge_weights[eID])
+                / (wU - min(edge_weights.values()))
+                * (wU - wL)
+                for eID in edges
             }
-        assert min(edge_weights.values()) >= wL and max(
-            edge_weights.values()) <= wU
+        assert min(edge_weights.values()) >= wL and max(edge_weights.values()) <= wU
 
         # Init edge hovers, if required.
         if edge_hovers is None:
             edge_hovers = {}
         edge_hovers = {
-            eID: edge_hovers[eID] if eID in edge_hovers else None
-            for eID in edges
+            eID: edge_hovers[eID] if eID in edge_hovers else None for eID in edges
         }
 
         _x = {t: x[i] for i, t in enumerate(nodes)}
@@ -158,8 +159,7 @@ def plot_network(
 
         # Setup edge colors (get from colormap).
         viridis_cmap = matplotlib.cm.get_cmap("Blues")
-        norm = matplotlib.colors.Normalize(vmin=0,
-                                           vmax=max(edge_weights.values()))
+        norm = matplotlib.colors.Normalize(vmin=0, vmax=max(edge_weights.values()))
         edge_colors = {}
         for eID, w in edge_weights.items():
             k = matplotlib.colors.colorConverter.to_rgb(viridis_cmap(norm(w)))
@@ -173,9 +173,9 @@ def plot_network(
                 mode="lines",
                 text=[None, edge_hovers[e], None],
                 hoverinfo="text",
-                line=go.scatter.Line(width=edge_weights[e],
-                                     color=edge_colors[e]),
-            ) for e in edges
+                line=go.scatter.Line(width=edge_weights[e], color=edge_colors[e]),
+            )
+            for e in edges
         ]
 
     # Prepare figure.
@@ -209,14 +209,12 @@ def plot_network(
                     bgcolor="#20ade3",
                     bordercolor="black",
                     borderpad=5,
-                ) for i, nID in enumerate(nodes) if node_labels is not None
+                )
+                for i, nID in enumerate(nodes)
+                if node_labels is not None
             ],
-            xaxis=go.layout.XAxis(showgrid=False,
-                                  zeroline=False,
-                                  showticklabels=False),
-            yaxis=go.layout.YAxis(showgrid=False,
-                                  zeroline=False,
-                                  showticklabels=False),
+            xaxis=go.layout.XAxis(showgrid=False, zeroline=False, showticklabels=False),
+            yaxis=go.layout.YAxis(showgrid=False, zeroline=False, showticklabels=False),
             paper_bgcolor="white",
             plot_bgcolor="white",
         ),
@@ -295,16 +293,12 @@ def plot_orderbook(
         name="sell %s" % t1,
         showlegend=False,
         hovertext=[
-            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xS1[i], t1)
-            for i in _idx
+            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xS1[i], t1) for i in _idx
         ],
         hoverinfo="text+name",
         fill=None,
         mode="lines",
-        line={
-            "color": C0,
-            "width": 1
-        },
+        line={"color": C0, "width": 1},
     )
 
     trace_xB1 = go.Scatter(
@@ -313,16 +307,12 @@ def plot_orderbook(
         name="buy %s" % t1,
         showlegend=False,
         hovertext=[
-            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xB1[i], t1)
-            for i in _idx
+            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xB1[i], t1) for i in _idx
         ],
         hoverinfo="text+name",
         fill=None,
         mode="lines",
-        line={
-            "color": C1,
-            "width": 1
-        },
+        line={"color": C1, "width": 1},
     )
 
     trace_x1_min = go.Scatter(
@@ -332,10 +322,7 @@ def plot_orderbook(
         hoverinfo="skip",
         fill="tozeroy",
         mode="lines",
-        line={
-            "color": "#bfbfbf",
-            "width": 0
-        },
+        line={"color": "#bfbfbf", "width": 0},
     )
 
     trace_xS2 = go.Scatter(
@@ -344,16 +331,12 @@ def plot_orderbook(
         name="sell %s" % t2,
         showlegend=False,
         hovertext=[
-            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xS2[i], t2)
-            for i in _idx
+            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xS2[i], t2) for i in _idx
         ],
         hoverinfo="text+name",
         fill=None,
         mode="lines",
-        line={
-            "color": C1,
-            "width": 1
-        },
+        line={"color": C1, "width": 1},
     )
 
     trace_xB2 = go.Scatter(
@@ -362,16 +345,12 @@ def plot_orderbook(
         name="buy %s" % t2,
         showlegend=False,
         hovertext=[
-            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xB2[i], t2)
-            for i in _idx
+            xrate_hovers[i] + "<br>amount: %.4f %s" % (_xB2[i], t2) for i in _idx
         ],
         hoverinfo="text+name",
         fill=None,
         mode="lines",
-        line={
-            "color": C0,
-            "width": 1
-        },
+        line={"color": C0, "width": 1},
     )
 
     trace_x2_min = go.Scatter(
@@ -381,10 +360,7 @@ def plot_orderbook(
         hoverinfo="skip",
         fill="tozeroy",
         mode="lines",
-        line={
-            "color": "#bfbfbf",
-            "width": 0
-        },
+        line={"color": "#bfbfbf", "width": 0},
     )
 
     trace_x1_net = go.Scatter(
@@ -399,10 +375,7 @@ def plot_orderbook(
         hoverinfo="text+name",
         fill="tozeroy",
         mode="lines",
-        line={
-            "color": C2,
-            "width": 1
-        },
+        line={"color": C2, "width": 1},
     )
 
     trace_x2_net = go.Scatter(
@@ -417,10 +390,7 @@ def plot_orderbook(
         hoverinfo="text+name",
         fill="tozeroy",
         mode="lines",
-        line={
-            "color": C2,
-            "width": 1
-        },
+        line={"color": C2, "width": 1},
     )
 
     fig.append_trace(trace_xB1, 1, 1)

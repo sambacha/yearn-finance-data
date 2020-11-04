@@ -1,12 +1,9 @@
 from typing import Dict, List
 
+
 class RoiInfo:
     def __init__(
-        self,
-        dm_change: float,
-        eth_balance: int,
-        token_balance: int,
-        trade_volume: int
+        self, dm_change: float, eth_balance: int, token_balance: int, trade_volume: int
     ):
         self.dm_change: float = dm_change
         self.eth_balance: int = eth_balance
@@ -23,7 +20,7 @@ class ExchangeInfo:
         token_decimals: int,
         exchange_address: str,
         eth_balance: int,
-        token_balance: int
+        token_balance: int,
     ):
         self.token_address: str = token_address
         self.token_name: str = token_name
@@ -39,6 +36,7 @@ class ExchangeInfo:
         self.volume: List[Dict[str, int]] = list()
         self.valuable_traders: List[str] = list()
 
+
 class History:
     def __init__(
         self,
@@ -46,7 +44,7 @@ class History:
         dm_change: float,
         bnt_balance: int,
         token_balance: int,
-        trade_volume: int
+        trade_volume: int,
     ):
         self.block_number: int = block_number
         self.dm_change: float = dm_change
@@ -56,12 +54,7 @@ class History:
 
 
 class RelayInfo:
-    def __init__(
-        self,
-        token_address: str,
-        token_symbol: str,
-        converter_address: str
-    ):
+    def __init__(self, token_address: str, token_symbol: str, converter_address: str):
         self.token_address: str = token_address
         self.token_symbol: str = token_symbol
         self.underlying_token_symbol: str = None

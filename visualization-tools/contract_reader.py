@@ -9,11 +9,11 @@ abi = '[{"constant":true,"inputs":[],"name":"IMPROVEMENT_DENOMINATOR","outputs":
 
 
 class ContractReader:
-
     def __init__(self, network="mainnet"):
         # Specify Infura credentials
-        node_url = ("https://" + network +
-                    ".infura.io/v3/9408f47dedf04716a03ef994182cf150")
+        node_url = (
+            "https://" + network + ".infura.io/v3/9408f47dedf04716a03ef994182cf150"
+        )
         addresses = {
             "mainnet": "0x6F400810b62df8E13fded51bE75fF5393eaa841F",
             "rinkeby": "0xC576eA7bd102F7E476368a5E98FA455d1Ea34dE2",
@@ -38,10 +38,11 @@ class ContractReader:
         batch_id = self.get_current_batch_id()
         orders = list(
             filter(
-                lambda order: order["validUntil"] >= batch_id and order[
-                    "validFrom"] <= batch_id,
+                lambda order: order["validUntil"] >= batch_id
+                and order["validFrom"] <= batch_id,
                 orders,
-            ))
+            )
+        )
         return orders
 
     def get_orderbook(self):
@@ -64,14 +65,16 @@ class ContractReader:
 
             orders_decoded_raw = decode_orders(
                 self.contract.functions.getEncodedUsersPaginated(
-                    Web3.toChecksumAddress(current_user), current_offset,
-                    page_size).call())
+                    Web3.toChecksumAddress(current_user), current_offset, page_size
+                ).call()
+            )
 
             orders_raw += orders_decoded_raw
             if len(orders_decoded_raw) > 0:
                 current_user = orders_decoded_raw[-1]["accountID"]
                 current_offset = len(
-                    [o for o in orders_raw if o["accountID"] == current_user])
+                    [o for o in orders_raw if o["accountID"] == current_user]
+                )
 
             last_page_size = len(orders_decoded_raw)
 
@@ -84,14 +87,12 @@ class ContractReader:
             buy_token = "T%04d" % o["buyToken"]
 
             # Get sell amount.
-            sell_amount = Decimal(
-                min(o["remainingAmount"], o["sellTokenBalance"]))
+            sell_amount = Decimal(min(o["remainingAmount"], o["sellTokenBalance"]))
             if sell_amount == 0:
                 continue
 
             # Compute buy amount from sell amount and limit price.
-            limit_price = Decimal(o["priceNumerator"]) / Decimal(
-                o["priceDenominator"])
+            limit_price = Decimal(o["priceNumerator"]) / Decimal(o["priceDenominator"])
             if limit_price == 0:
                 buy_amount = 1
             else:
@@ -99,23 +100,26 @@ class ContractReader:
 
             logging.debug(
                 "Read order: sellAmount %40d %7s -- buyAmount %40d %7s -- accountID %s"
-                % (sell_amount, sell_token, buy_amount, buy_token,
-                   o["accountID"]))
+                % (sell_amount, sell_token, buy_amount, buy_token, o["accountID"])
+            )
 
-            orders.append({
-                "accountID": o["accountID"],
-                "sellToken": sell_token,
-                "buyToken": buy_token,
-                "sellAmount": str(int(sell_amount)),
-                "buyAmount": str(int(buy_amount)),
-                "validFrom": o["validFrom"],
-                "validUntil": o["validUntil"],
-            })
+            orders.append(
+                {
+                    "accountID": o["accountID"],
+                    "sellToken": sell_token,
+                    "buyToken": buy_token,
+                    "sellAmount": str(int(sell_amount)),
+                    "buyAmount": str(int(buy_amount)),
+                    "validFrom": o["validFrom"],
+                    "validUntil": o["validUntil"],
+                }
+            )
 
         return orders
 
-    def get_account_balances(self, tokens: List[str],
-                             orders: List[Dict]) -> Dict[str, Dict[str, str]]:
+    def get_account_balances(
+        self, tokens: List[str], orders: List[Dict]
+    ) -> Dict[str, Dict[str, str]]:
         """Get account balances of the sell tokens of all orders.
 
         Args:
@@ -130,8 +134,7 @@ class ContractReader:
         token_adresses = {}
         for t in tokens:
             tID = int(t.replace("T", ""))
-            token_adresses[t] = self.contract.functions.tokenIdToAddressMap(
-                tID).call()
+            token_adresses[t] = self.contract.functions.tokenIdToAddressMap(tID).call()
 
         # Read account balances.
         accounts = {}
@@ -146,7 +149,9 @@ class ContractReader:
             if tS not in accounts[aID]:
                 accounts[aID][tS] = str(
                     self.contract.functions.getBalance(
-                        Web3.toChecksumAddress(aID), token_adresses[tS]).call())
+                        Web3.toChecksumAddress(aID), token_adresses[tS]
+                    ).call()
+                )
 
         return accounts
 
@@ -157,8 +162,7 @@ def decode_orders(orders_encoded):
 
     # Iterate over order byte strings (one order = 112 bytes).
     for order_bytes in [
-            orders_encoded[k:k + 112]
-            for k in range(0, len(orders_encoded), 112)
+        orders_encoded[k : k + 112] for k in range(0, len(orders_encoded), 112)
     ]:
 
         orders_decoded.append(_read_order_from_bytes(order_bytes))
@@ -202,7 +206,7 @@ def _read_order_from_bytes(order_bytes) -> Dict[str, str]:
     i = 0
     for attr, n in encoding_nr_bytes.items():
 
-        _bytes = order_bytes[i:i + n]
+        _bytes = order_bytes[i : i + n]
 
         if attr == "accountID":
             order[attr] = "0x" + _bytes.hex()

@@ -61,16 +61,15 @@ def decimal_to_str(v: Decimal, prec=FLOAT_PREC):
 def _order_data_to_decimal(orders: List[Dict]) -> List[Dict]:
     """Convert order data from string to Decimal."""
     for i in range(len(orders)):
-        for key in [
-                "sellAmount", "buyAmount", "execSellAmount", "execBuyAmount"
-        ]:
+        for key in ["sellAmount", "buyAmount", "execSellAmount", "execBuyAmount"]:
             orders[i][key] = Decimal(orders[i].get(key, "0"))
 
     return orders
 
 
 def restrict_order_sell_amounts_by_balances(
-        orders: List[Dict], accounts: Dict[str, Dict[str, int]]) -> List[Dict]:
+    orders: List[Dict], accounts: Dict[str, Dict[str, int]]
+) -> List[Dict]:
     """Restrict order sell amounts to available account balances.
 
     This method also filters out orders that end up with a sell amount of zero.
@@ -85,15 +84,19 @@ def restrict_order_sell_amounts_by_balances(
     """
 
     def _xrate(sell_amount, buy_amount):
-        return (Decimal(sell_amount) / Decimal(buy_amount)
-                if Decimal(buy_amount) > 0 else Decimal("infinity"))
+        return (
+            Decimal(sell_amount) / Decimal(buy_amount)
+            if Decimal(buy_amount) > 0
+            else Decimal("infinity")
+        )
 
     def _cap_sell_amount_by_balance(sell_amount_old, balance):
         """Cap sell amount by account balance."""
         return min(sell_amount_old, remaining_balances[aID, tS, tB])
 
-    def _update_buy_amount_from_new_sell_amount(buy_amount_old, sell_amount_new,
-                                                sell_amount_old):
+    def _update_buy_amount_from_new_sell_amount(
+        buy_amount_old, sell_amount_new, sell_amount_old
+    ):
         """Reduce buy amount to correspond to new sell amount."""
         buy_amount_new = buy_amount_old * sell_amount_new / sell_amount_old
         return buy_amount_new.to_integral_value(rounding=ROUND_UP)
@@ -108,9 +111,9 @@ def restrict_order_sell_amounts_by_balances(
     # This may in certain cases interfere with the max-nr-exec-orders or the
     # min-avg-fee-per-order (economic viability) constraint, where a larger order
     # with a worse price might be preferred over a smaller order with a better price.
-    for o in sorted(orders,
-                    key=lambda o: _xrate(o["sellAmount"], o["buyAmount"]),
-                    reverse=True):
+    for o in sorted(
+        orders, key=lambda o: _xrate(o["sellAmount"], o["buyAmount"]), reverse=True
+    ):
         tS, tB = o["sellToken"], o["buyToken"]
 
         # Get sell amount (capped by available account balance).
@@ -124,7 +127,8 @@ def restrict_order_sell_amounts_by_balances(
             remaining_balances[(aID, tS, tB)] = sell_token_balance
 
         sell_amount_new = _cap_sell_amount_by_balance(
-            sell_amount_old, remaining_balances[aID, tS, tB])
+            sell_amount_old, remaining_balances[aID, tS, tB]
+        )
 
         # Update remaining balance.
         remaining_balances[aID, tS, tB] -= sell_amount_new
@@ -132,13 +136,14 @@ def restrict_order_sell_amounts_by_balances(
 
         logging.debug(
             "Capping sell amount of <%s> by account balance [%s] : %40d --> %25d"
-            % (oID, tS, sell_amount_old, sell_amount_new))
+            % (oID, tS, sell_amount_old, sell_amount_new)
+        )
 
         # Skip orders with zero sell amount.
         if sell_amount_new == 0:
             logging.debug(
-                "Removing order <%s> : zero sell amount or available balance!" %
-                oID)
+                "Removing order <%s> : zero sell amount or available balance!" % oID
+            )
             continue
         else:
             assert sell_amount_old > 0
@@ -146,10 +151,13 @@ def restrict_order_sell_amounts_by_balances(
         # Update buy amount according to capped sell amount.
         buy_amount_old = Decimal(o["buyAmount"])
         buy_amount_new = _update_buy_amount_from_new_sell_amount(
-            buy_amount_old, sell_amount_new, sell_amount_old)
+            buy_amount_old, sell_amount_new, sell_amount_old
+        )
 
-        logging.debug("Updated buy amount of <%s> : %40d --> %25d  [%s]" %
-                      (oID, buy_amount_old, buy_amount_new, tB))
+        logging.debug(
+            "Updated buy amount of <%s> : %40d --> %25d  [%s]"
+            % (oID, buy_amount_old, buy_amount_new, tB)
+        )
 
         o["sellAmount"] = str(sell_amount_new)
         o["buyAmount"] = str(buy_amount_new)
@@ -176,7 +184,8 @@ def read_instance_from_file(instance_file: str) -> Dict:
 
         # Cap orders by the available account balance.
         inst["orders"] = restrict_order_sell_amounts_by_balances(
-            inst["orders"], inst["accounts"])
+            inst["orders"], inst["accounts"]
+        )
 
         # Read order data as decimal by default.
         inst["orders"] = _order_data_to_decimal(inst["orders"])
@@ -202,7 +211,8 @@ def read_instance_from_blockchain(contract_reader) -> Dict:
 
     # Extract set of participating tokens from orders.
     tokens = sorted(
-        list(set(sum([(o["sellToken"], o["buyToken"]) for o in orders], ()))))
+        list(set(sum([(o["sellToken"], o["buyToken"]) for o in orders], ())))
+    )
     ref_token = tokens[0]
 
     # Init accounts.
@@ -216,10 +226,7 @@ def read_instance_from_blockchain(contract_reader) -> Dict:
         "refToken": ref_token,
         "accounts": accounts,
         "orders": orders,
-        "fee": {
-            "token": tokens[0],
-            "ratio": 0.001
-        },
+        "fee": {"token": tokens[0], "ratio": 0.001},
     }
 
     with open("./instance-%s.json" % batch_id, "w") as f:
@@ -255,7 +262,8 @@ def get_token_ID(token_str: str) -> str:
     """
     # If available, return token ID; otherwise fall back to input string.
     token_ids = [
-        tID for tID, token_info in TOKENS.items()
+        tID
+        for tID, token_info in TOKENS.items()
         if isinstance(token_info, dict) and token_info.get("alias") == token_str
     ]
     if len(token_ids) == 0:
@@ -265,7 +273,8 @@ def get_token_ID(token_str: str) -> str:
     else:
         logging.warning(
             f"Multiple tokens with the same alias [{token_str}]: {token_ids}"
-            f"(returning {token_str})")
+            f"(returning {token_str})"
+        )
         return token_str
 
 
@@ -294,16 +303,15 @@ def get_token_prices(prices: Dict[str, str]) -> Dict[str, Decimal]:
 
     """
     return {
-        get_token_name(t):
-        Decimal(p) / Decimal(10**(36 - get_token_decimals(t)))
+        get_token_name(t): Decimal(p) / Decimal(10 ** (36 - get_token_decimals(t)))
         for t, p in prices.items()
         if p is not None
     }
 
 
 def get_tokens(
-        tokens: Union[Dict[NODE_TYPE, Dict],
-                      List[NODE_TYPE]]) -> List[NODE_TYPE]:
+    tokens: Union[Dict[NODE_TYPE, Dict], List[NODE_TYPE]]
+) -> List[NODE_TYPE]:
     """Get list of tokens by their names.
 
     Args:
@@ -321,7 +329,7 @@ def get_tokens(
 
 def get_order_amount_scaled(amount: Decimal, token_ID: str):
     """Convert order amount from big-int to human-readable."""
-    return amount / Decimal(10**get_token_decimals(token_ID))
+    return amount / Decimal(10 ** get_token_decimals(token_ID))
 
 
 def get_nr_orders_tokenpair(orders: List[Dict]) -> Dict[EDGE_TYPE, int]:
@@ -348,11 +356,10 @@ def get_nr_orders_tokenpair(orders: List[Dict]) -> Dict[EDGE_TYPE, int]:
         else:
             nr_orders_tokenpair[tS, tB] = 1
 
-    for (t1, t2), n in sorted(nr_orders_tokenpair.items(),
-                              key=lambda i: i[1],
-                              reverse=True):
-        logging.debug("Number of orders on token pair %5s <> %-5s : %3d" %
-                      (t1, t2, n))
+    for (t1, t2), n in sorted(
+        nr_orders_tokenpair.items(), key=lambda i: i[1], reverse=True
+    ):
+        logging.debug("Number of orders on token pair %5s <> %-5s : %3d" % (t1, t2, n))
 
     return nr_orders_tokenpair
 
@@ -435,10 +442,13 @@ def log_orders(orders: List[Dict]):
 
         aID = o["accountID"]
 
-        logging.info("<%s>  Sell  %42s  %-6s  for at least  %42s  %-6s" % (
-            aID[:8],
-            xS.quantize(FLOAT_PREC),
-            "[" + tS + "]",
-            xB.quantize(FLOAT_PREC),
-            "[" + tB + "]",
-        ))
+        logging.info(
+            "<%s>  Sell  %42s  %-6s  for at least  %42s  %-6s"
+            % (
+                aID[:8],
+                xS.quantize(FLOAT_PREC),
+                "[" + tS + "]",
+                xB.quantize(FLOAT_PREC),
+                "[" + tB + "]",
+            )
+        )

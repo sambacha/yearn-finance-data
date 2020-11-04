@@ -17,16 +17,18 @@ from util import EDGE_TYPE, NODE_TYPE
 import TokenInfo
 
 
-def generate_plot(tokens: List[NODE_TYPE],
-                  nr_exec_orders_tokenpair: Dict[EDGE_TYPE, int],
-                  token_prices: Dict[NODE_TYPE, Decimal],
-                  token_amounts_sold: Dict[NODE_TYPE, Decimal],
-                  token_amounts_bought: Dict[NODE_TYPE, Decimal],
-                  tokenpair_amounts_sold: Dict[EDGE_TYPE, Decimal],
-                  tokenpair_amounts_bought: Dict[EDGE_TYPE, Decimal],
-                  output_dir: str = "./",
-                  ipython: bool = False,
-                  **kwargs):
+def generate_plot(
+    tokens: List[NODE_TYPE],
+    nr_exec_orders_tokenpair: Dict[EDGE_TYPE, int],
+    token_prices: Dict[NODE_TYPE, Decimal],
+    token_amounts_sold: Dict[NODE_TYPE, Decimal],
+    token_amounts_bought: Dict[NODE_TYPE, Decimal],
+    tokenpair_amounts_sold: Dict[EDGE_TYPE, Decimal],
+    tokenpair_amounts_bought: Dict[EDGE_TYPE, Decimal],
+    output_dir: str = "./",
+    ipython: bool = False,
+    **kwargs
+):
     """Generate a token-order-graph plot using plotly.
 
     Args:
@@ -48,26 +50,29 @@ def generate_plot(tokens: List[NODE_TYPE],
     tokenpairs = nr_exec_orders_tokenpair.keys()
 
     trading_volume_tokens = {
-        t: (token_amounts_sold.get(t, 0) * token_prices.get(t, 0) +
-            token_amounts_bought.get(t, 0) * token_prices.get(t, 0))
+        t: (
+            token_amounts_sold.get(t, 0) * token_prices.get(t, 0)
+            + token_amounts_bought.get(t, 0) * token_prices.get(t, 0)
+        )
         for t in tokens
     }
 
-    trading_volume_tokenpairs = {(t1, t2):
-                                 (tokenpair_amounts_sold.get(
-                                     (t1, t2), 0) * token_prices.get(t1, 0) +
-                                  tokenpair_amounts_bought.get(
-                                      (t1, t2), 0) * token_prices.get(t1, 0) +
-                                  tokenpair_amounts_bought.get(
-                                      (t2, t1), 0) * token_prices.get(t2, 0) +
-                                  tokenpair_amounts_bought.get(
-                                      (t2, t1), 0) * token_prices.get(t2, 0))
-                                 for t1, t2 in tokenpairs}
+    trading_volume_tokenpairs = {
+        (t1, t2): (
+            tokenpair_amounts_sold.get((t1, t2), 0) * token_prices.get(t1, 0)
+            + tokenpair_amounts_bought.get((t1, t2), 0) * token_prices.get(t1, 0)
+            + tokenpair_amounts_bought.get((t2, t1), 0) * token_prices.get(t2, 0)
+            + tokenpair_amounts_bought.get((t2, t1), 0) * token_prices.get(t2, 0)
+        )
+        for t1, t2 in tokenpairs
+    }
 
-    xrates = {(t1, t2): token_prices[t1] / token_prices[t2] for t1 in tokens
-              for t2 in tokens
-              if token_prices.get(t1, 0) > 0 and token_prices.get(t2, 0) > 0 and
-              t1 != t2}
+    xrates = {
+        (t1, t2): token_prices[t1] / token_prices[t2]
+        for t1 in tokens
+        for t2 in tokens
+        if token_prices.get(t1, 0) > 0 and token_prices.get(t2, 0) > 0 and t1 != t2
+    }
 
     # Set plot attributes.
     node_weights = trading_volume_tokens
@@ -75,62 +80,63 @@ def generate_plot(tokens: List[NODE_TYPE],
     node_labels = {t: t for t in tokens}
 
     node_hovers = {
-        t: "=== %s ===<br>clearing price : %s<br>sold : %s<br>bought : %s" % (
+        t: "=== %s ===<br>clearing price : %s<br>sold : %s<br>bought : %s"
+        % (
             t,
             util.decimal_to_str(token_prices.get(t)),
             util.decimal_to_str(token_amounts_sold.get(t)),
             util.decimal_to_str(token_amounts_bought.get(t)),
-        ) for t in tokens
+        )
+        for t in tokens
     }
 
-    edge_weights = {
-        tp: v for (tp, v) in trading_volume_tokenpairs.items() if v > 0
-    }
+    edge_weights = {tp: v for (tp, v) in trading_volume_tokenpairs.items() if v > 0}
 
-    edge_hovers = {(t1, t2): "=== %s/%s ===<br>"
-                   "exchange rate : %s %s/%s <> %s %s/%s<br>"
-                   "orders executed : %d<br>"
-                   "# %s sold : %s<br># %s bought : %s<br>"
-                   "# %s sold : %s<br># %s bought : %s" % (
-                       t1,
-                       t2,
-                       util.decimal_to_str(xrates.get((t1, t2))),
-                       t2,
-                       t1,
-                       util.decimal_to_str(xrates.get((t2, t1))),
-                       t1,
-                       t2,
-                       (nr_exec_orders_tokenpair.get(
-                           (t1, t2), 0) + nr_exec_orders_tokenpair.get(
-                               (t2, t1), 0)),
-                       t1,
-                       util.decimal_to_str(
-                           tokenpair_amounts_sold.get((t1, t2), Decimal("0"))),
-                       t1,
-                       util.decimal_to_str(
-                           tokenpair_amounts_bought.get(
-                               (t1, t2), Decimal("0"))),
-                       t2,
-                       util.decimal_to_str(
-                           tokenpair_amounts_sold.get((t2, t1), Decimal("0"))),
-                       t2,
-                       util.decimal_to_str(
-                           tokenpair_amounts_bought.get(
-                               (t2, t1), Decimal("0"))),
-                   ) for (t1, t2) in tokenpairs}
+    edge_hovers = {
+        (t1, t2): "=== %s/%s ===<br>"
+        "exchange rate : %s %s/%s <> %s %s/%s<br>"
+        "orders executed : %d<br>"
+        "# %s sold : %s<br># %s bought : %s<br>"
+        "# %s sold : %s<br># %s bought : %s"
+        % (
+            t1,
+            t2,
+            util.decimal_to_str(xrates.get((t1, t2))),
+            t2,
+            t1,
+            util.decimal_to_str(xrates.get((t2, t1))),
+            t1,
+            t2,
+            (
+                nr_exec_orders_tokenpair.get((t1, t2), 0)
+                + nr_exec_orders_tokenpair.get((t2, t1), 0)
+            ),
+            t1,
+            util.decimal_to_str(tokenpair_amounts_sold.get((t1, t2), Decimal("0"))),
+            t1,
+            util.decimal_to_str(tokenpair_amounts_bought.get((t1, t2), Decimal("0"))),
+            t2,
+            util.decimal_to_str(tokenpair_amounts_sold.get((t2, t1), Decimal("0"))),
+            t2,
+            util.decimal_to_str(tokenpair_amounts_bought.get((t2, t1), Decimal("0"))),
+        )
+        for (t1, t2) in tokenpairs
+    }
 
     # Plot.
-    plot_network(nodes=tokens,
-                 edges=list(edge_weights.keys()),
-                 node_weights=node_weights,
-                 node_labels=node_labels,
-                 node_hovers=node_hovers,
-                 edge_weights=edge_weights,
-                 edge_hovers=edge_hovers,
-                 plot_title="solution-graph",
-                 output_dir=output_dir,
-                 ipython=ipython,
-                 **kwargs)
+    plot_network(
+        nodes=tokens,
+        edges=list(edge_weights.keys()),
+        node_weights=node_weights,
+        node_labels=node_labels,
+        node_hovers=node_hovers,
+        edge_weights=edge_weights,
+        edge_hovers=edge_hovers,
+        plot_title="solution-graph",
+        output_dir=output_dir,
+        ipython=ipython,
+        **kwargs
+    )
 
     return
 
@@ -140,7 +146,8 @@ if __name__ == "__main__":
 
     # Process command line arguments.
     parser = argparse.ArgumentParser(
-        description="Input file and output directory parser.")
+        description="Input file and output directory parser."
+    )
 
     parser.add_argument(
         "jsonFile",
@@ -149,9 +156,8 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--price",
-        type=str,
-        help="A token name used for denomination of the prices.")
+        "--price", type=str, help="A token name used for denomination of the prices."
+    )
 
     parser.add_argument(
         "--logging",
@@ -198,8 +204,7 @@ if __name__ == "__main__":
 
     logging.info("=== TOKEN PRICES ===")
     for t, p in token_prices.items():
-        logging.info("%5s : %14s" %
-                     (t, util.decimal_to_str(token_prices.get(t))))
+        logging.info("%5s : %14s" % (t, util.decimal_to_str(token_prices.get(t))))
 
     logging.info("=== EXECUTED ORDERS ===")
     for idx, o in enumerate(inst["orders"]):
@@ -208,48 +213,54 @@ if __name__ == "__main__":
             aID = o.get("accountID", "")
             xS_exec = util.get_order_amount_scaled(o["execSellAmount"], tS)
             xB_exec = util.get_order_amount_scaled(o["execBuyAmount"], tB)
-            logging.info("%5d : <%6s>  sold  %14s  %-5s  for  %14s  %-5s" % (
-                idx,
-                aID[:6],
-                util.decimal_to_str(xS_exec),
-                util.get_token_name(tS),
-                util.decimal_to_str(xB_exec),
-                util.get_token_name(tB),
-            ))
+            logging.info(
+                "%5d : <%6s>  sold  %14s  %-5s  for  %14s  %-5s"
+                % (
+                    idx,
+                    aID[:6],
+                    util.decimal_to_str(xS_exec),
+                    util.get_token_name(tS),
+                    util.decimal_to_str(xB_exec),
+                    util.get_token_name(tB),
+                )
+            )
 
     logging.info("=== TRADED TOKEN AMOUNTS ===")
     for t in set(token_amounts_sold.keys()) | set(token_amounts_bought.keys()):
-        logging.info("%5s : sold %14s  //  bought %14s" % (
-            t,
-            util.decimal_to_str(token_amounts_sold.get(t, Decimal("0"))),
-            util.decimal_to_str(token_amounts_bought.get(t, Decimal("0"))),
-        ))
+        logging.info(
+            "%5s : sold %14s  //  bought %14s"
+            % (
+                t,
+                util.decimal_to_str(token_amounts_sold.get(t, Decimal("0"))),
+                util.decimal_to_str(token_amounts_bought.get(t, Decimal("0"))),
+            )
+        )
 
     logging.info("=== TRADE ON TOKEN PAIRS ===")
     for t1, t2 in nr_exec_orders_tokenpair.keys():
-        logging.info("%5s-%-5s : %2d orders executed  //  "
-                     "%5s sold %14s / bought %14s  //  "
-                     "%5s sold %14s / bought %14s" % (
-                         t1,
-                         t2,
-                         (nr_exec_orders_tokenpair.get(
-                             (t1, t2), 0) + nr_exec_orders_tokenpair.get(
-                                 (t2, t1), 0)),
-                         t1,
-                         util.decimal_to_str(
-                             tokenpair_amounts_sold.get(
-                                 (t1, t2), Decimal("0"))),
-                         util.decimal_to_str(
-                             tokenpair_amounts_bought.get(
-                                 (t1, t2), Decimal("0"))),
-                         t2,
-                         util.decimal_to_str(
-                             tokenpair_amounts_sold.get(
-                                 (t2, t1), Decimal("0"))),
-                         util.decimal_to_str(
-                             tokenpair_amounts_bought.get(
-                                 (t2, t1), Decimal("0"))),
-                     ))
+        logging.info(
+            "%5s-%-5s : %2d orders executed  //  "
+            "%5s sold %14s / bought %14s  //  "
+            "%5s sold %14s / bought %14s"
+            % (
+                t1,
+                t2,
+                (
+                    nr_exec_orders_tokenpair.get((t1, t2), 0)
+                    + nr_exec_orders_tokenpair.get((t2, t1), 0)
+                ),
+                t1,
+                util.decimal_to_str(tokenpair_amounts_sold.get((t1, t2), Decimal("0"))),
+                util.decimal_to_str(
+                    tokenpair_amounts_bought.get((t1, t2), Decimal("0"))
+                ),
+                t2,
+                util.decimal_to_str(tokenpair_amounts_sold.get((t2, t1), Decimal("0"))),
+                util.decimal_to_str(
+                    tokenpair_amounts_bought.get((t2, t1), Decimal("0"))
+                ),
+            )
+        )
 
     # Plot.
     generate_plot(

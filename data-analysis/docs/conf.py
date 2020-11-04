@@ -212,13 +212,15 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(
-    "index",
-    "yearn-finance-data",
-    u"yearn-finance-data Documentation",
-    [u"sambacha"],
-    1,
-)]
+man_pages = [
+    (
+        "index",
+        "yearn-finance-data",
+        u"yearn-finance-data Documentation",
+        [u"sambacha"],
+        1,
+    )
+]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
