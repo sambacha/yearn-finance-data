@@ -6,6 +6,13 @@
 
 The limited precision of numbers in JavaScript is Number.MAX_SAFE_INTEGER nanoseconds is about 104 days
 
+```js
+// uint32 (two's complement) max
+// more conservative than Number.MAX_SAFE_INTEGER
+const MAX = 4294967295
+```
+> source: https://github.com/metamask/json-rpc-engine/blob/5001c0dc013dba0f11f64847f66bfbbbcf9b92bb/src/getUniqueId.js#L3
+
 
 ### Exchange
 
