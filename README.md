@@ -1,5 +1,16 @@
 ## General Data Types
 
+
+### Calculating 
+
+#### Fees
+
+`,timestamp,name,action,price,balance,share_price,fee,mgmt,perf`
+
+### Contracts
+
+see `contract-addresses/` for `.json` and `.csv`
+
 ### Data Percision 
 
 #### GraphQL / Javascript
