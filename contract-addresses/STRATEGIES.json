@@ -1,0 +1,62 @@
+[
+	{
+		"Strategy": "StrategyCurve3CrvVoterProxy",
+		"Address": "0xC59601F0CC49baa266891b7fc63d2D5FE097A79D",
+		"GitHub": "StrategyCurve3CrvVoterProxy.sol",
+		"Vault": "curve.fi/3pool LP"
+	},
+	{
+		"Strategy": "StrategyMKRVaultDAIDelegate",
+		"Address": "0x932fc4fd0eee66f22f1e23fba74d7058391c0b15",
+		"GitHub": "StrategyMKRVaultDAIDelegate.sol",
+		"Vault": "WETH"
+	},
+	{
+		"Strategy": "StrategyYFIGovernance",
+		"Address": "0x395f93350d5102b6139abfc84a7d6ee70488797c",
+		"GitHub": "StrategyYFIGovernance.sol",
+		"Vault": "YFI"
+	},
+	{
+		"Strategy": "StrategyCurveYCRVVoter",
+		"Address": "0xc999fb87aca383a63d804a575396f65a55aa5ac8",
+		"GitHub": "StrategyCurveYCRVVoter.sol",
+		"Vault": "curve.fi/y LP"
+	},
+	{
+		"Strategy": "StrategyCurveYBUSD",
+		"Address": "0xb15ee8e74dac2d77f9d1080b32b0f3562954aee9",
+		"GitHub": "StrategyCurveYBUSD.sol",
+		"Vault": "curve.fi/busd LP"
+	},
+	{
+		"Strategy": "StrategyCurveSBTC",
+		"Address": "0x4feeaeced575239b46d70b50e13532ecb62e4ea8",
+		"GitHub": "StrategyCurveSBTC.sol",
+		"Vault": "curve.fi/sbtc LP"
+	},
+	{
+		"Strategy": "StrategyDAICurve",
+		"Address": "0xaa880345a3147a1fc6889080401c791813ed08dc",
+		"GitHub": "StrategyDAICurve.sol",
+		"Vault": "DAI"
+	},
+	{
+		"Strategy": "StrategyTUSDCurve",
+		"Address": "0x1d91e3f77271ed069618b4ba06d19821bc2ed8b0",
+		"GitHub": "StrategyTUSDCurve.sol",
+		"Vault": "TUSD"
+	},
+	{
+		"Strategy": "StrategyDForceUSDC",
+		"Address": "0xa30d1d98c502378ad61fe71bcdc3a808cf60b897",
+		"GitHub": "StrategyDForceUSDC.sol",
+		"Vault": "USDC"
+	},
+	{
+		"Strategy": "StrategyDForceUSDT",
+		"Address": "0x787c771035bde631391ced5c083db424a4a64bd8",
+		"GitHub": "StrategyDForceUSDT.sol",
+		"Vault": "USDT"
+	}
+]

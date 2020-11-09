@@ -20,5 +20,13 @@
   "devDependencies": {
     "d3": "^6.2.0",
     "lodash": "^4.17.20"
+  },
+  "main": ".prettierrc.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "smtlib": "^1.0.0",
+    "solc": "^0.7.0"
   }
 }

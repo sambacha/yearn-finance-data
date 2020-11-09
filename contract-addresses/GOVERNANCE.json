@@ -1,0 +1,27 @@
+[
+	{
+		"Contract": "Governance Staking (v2)",
+		"Status": "Live",
+		"Address": "0xba37b002abafdd8e89a1995da52740bbc013d992"
+	},
+	{
+		"Contract": "YearnGovernance (Balancer v1)",
+		"Status": "Old",
+		"Address": "0x3a22df48d84957f907e67f4313e3d43179040d6e"
+	},
+	{
+		"Contract": "YearnRewards (Yearn v1)",
+		"Status": "Old",
+		"Address": "0x0001fb050fe7312791bf6475b96569d83f695c9f"
+	},
+	{
+		"Contract": "YearnRewards (Balancer v1)",
+		"Status": "Old",
+		"Address": "0x033e52f513f9b98e129381c6708f9faa2dee5db5"
+	},
+	{
+		"Contract": "YearnRewards (Gov. Staking v1)",
+		"Status": "Old",
+		"Address": "0xb01419e74d8a2abb1bbad82925b19c36c191a701"
+	}
+]
