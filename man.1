@@ -1,0 +1,181 @@
+ix(1)                                 IX                                   ix(1)
+
+NAME
+
+    ix: command line pastebin.
+
+
+TL;DR
+
+    ~$ echo Hello world. | curl -F 'f:1=<-' ix.io
+    http://ix.io/fpW
+
+
+GET
+
+    ix.io/ID
+        raw
+
+    ix.io/ID/
+        default syntax language (by filetype, if provided)
+        append #n-LINENO to link directly to a particular line
+        uses pygments, see pygments documentation for details
+
+    ix.io/ID/LANG
+        explicitly set language
+
+    ix.io/ID+
+        console highlighting (default)
+
+    ix.io/ID+LANG
+        console highlighting (explicitly set language)
+
+    ix.io/user/USER
+        pastes from USER
+
+    ix.io/user/
+        last 100 anonymous pastes
+
+
+POST
+
+    ix.io/
+
+        f:N    contents or attached file.
+        id:N   id to replace. login required if used.
+        name:N set filename (if f:N is not attached).
+        ext:N  set filetype (eg .txt, if f:N is not attached).
+        read:N set number of reads allowed before deletion.
+        rm     id to delete. login required if used.
+
+    where N is a unique number within request. (This allows you to post
+    multiple files at once.)
+
+    Use Basic-Auth to login. If the login does not exist, it will be created.
+    Don't use an important password, this is not secure.
+
+    returns: http://ix.io/id for N in request
+
+
+PUT
+
+    ix.io/ID
+        replace ID. authentication required
+
+
+DELETE
+
+    ix.io/ID
+        delete ID. authentication required
+
+
+EXAMPLES
+
+    Anonymous, unnamed paste, two ways:
+
+        cat file.ext | curl -F 'f:1=<-' ix.io
+        curl -F 'f:1=@file.ext' ix.io
+
+    Nonymous, using .netrc for auth:
+
+       curl -n -F 'f:1=@file.ext' ix.io
+
+    Delete ID, two ways:
+
+        curl -n -X DELETE ix.io/ID
+        curl -F 'rm=ID' USER:PASS@ix.io
+
+    Replace ID, two ways:
+
+        curl -n -X PUT -F 'f:1=@file.ext' ix.io/ID
+        cat file.ext | curl -F 'f:1=<-' -F 'id:1=ID' USER:PASS@ix.io
+
+    Paste that can be only be read twice:
+
+        cat file.ext | curl -F 'f:1=<-' -F 'read:1=2' ix.io
+
+
+CLIENT
+
+    A client is maintained at ix.io/client
+
+        curl ix.io/client > ix
+        chmod +x ix
+        ./ix -h
+
+    Or if you wish, paste the following function into $HOME/.bashrc:
+
+        ix() {
+            local opts
+            local OPTIND
+            [ -f "$HOME/.netrc" ] && opts='-n'
+            while getopts ":hd:i:n:" x; do
+                case $x in
+                    h) echo "ix [-d ID] [-i ID] [-n N] [opts]"; return;;
+                    d) $echo curl $opts -X DELETE ix.io/$OPTARG; return;;
+                    i) opts="$opts -X PUT"; local id="$OPTARG";;
+                    n) opts="$opts -F read:1=$OPTARG";;
+                esac
+            done
+            shift $(($OPTIND - 1))
+            [ -t 0 ] && {
+                local filename="$1"
+                shift
+                [ "$filename" ] && {
+                    curl $opts -F f:1=@"$filename" $* ix.io/$id
+                    return
+                }
+                echo "^C to cancel, ^D to send."
+            }
+            curl $opts -F f:1='<-' $* ix.io/$id
+        }
+
+    Then open a new shell and type `ix -h`
+
+
+CAVEATS:
+    Paste at your risk. Be nice please. If you are distributing software that
+    uses this automatically, talk to me first. If you are distributing malware
+    please go away forever.
+
+    The codebase for ix.io is intended to be free and open-source. It is not
+    published at the moment because the author doesn't want to publish code
+    that isn't pretty and pleasant (and is also deeply lazy about getting it
+    there).
+
+CHANGES
+
+    20160129
+        Upgrade Pygments to 2.1
+    20150908
+        Terminal syntax highlighting (with + instead of /)
+    20141201
+        PUT and DELETE support
+    20141130
+        Migrated backend for better concurrency
+        Respect login:token via netrc/Basic-Auth (overrides request)
+        If file is attached set name/ext from the filename
+        Python client retired. We'll just build the shell snippet a bit more
+        Add delete after N reads functionality
+    20121205
+        Lots of changes to the bashrc function, and made a script version
+        available at /client.
+    20090911
+        new client released (v0.4):
+            * prompts for filename and filetype in interactive/pipe mode
+            * more intuitive use of -i (-i ID FILE)
+            * allow multiple deletes at the same time (-d ID -d ID2 ...)
+            * allow multiple gets at the same time (-g ID -g ID2 ...)
+    20090910
+        Support deleting multiple items in one request
+    20090801
+        OK i'm hashing tokens in the db, looks like things still work.
+    20090711
+        add id:N parameter, for replacing previous pastes (that you own)
+        python client updated to v0.3 accordingly
+        changed behavior of returned URL for pastes of multiple files at once
+
+
+TODO
+    * allow anonymous, owned pastes. You own them and can delete them, but
+      they don't show up in listings, and don't have sequential IDs.
