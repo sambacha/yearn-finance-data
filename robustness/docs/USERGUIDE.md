@@ -1,12 +1,11 @@
-[![SingnetLogo](../../../docs/assets/singnet-logo.jpg?raw=true 'SingularityNET')](https://singularitynet.io/)
+[![SingnetLogo](../../../docs/assets/singnet-logo.jpg?raw=true "SingularityNET")](https://singularitynet.io/)
 
 # Robustness Services
 
-
 ## Methods
 
-* [MinNodesToRemove](#minnodestoremove)
-* [MostImportantNodesEdgesSubset](#mostimportantnodesedgessubset)
+- [MinNodesToRemove](#minnodestoremove)
+- [MostImportantNodesEdgesSubset](#mostimportantnodesedgessubset)
 
 ## MinNodesToRemove
 
@@ -14,9 +13,9 @@ Identify the minimum set of nodes or edges that need to be removed to block mess
 
 ### Inputs
 
-* A graph (required)
-* source_node  (required)
-* target_node (required)
+- A graph (required)
+- source_node (required)
+- target_node (required)
 
 #### Sample input
 
@@ -66,12 +65,12 @@ Identify the most important nodes/edges between groups of nodes.
 
 ### Inputs
 
-* A graph (required). Weight parameter in the graph is optional
-* Source nodes  (required)
-* Target nodes (required)
-* Type (optional): Can assume either a value of 0 or 1. Defalut is 0 which would be used to calculate node betweeness; 1 for edge betweeeness.
-* normalized (optional): Default is False. If True the betweenness values are normalized by `2/((n−1)(n−2))` for graphs, and `1/((n−1)(n−2))` for directed graphs where n is the number of nodes in G.
-* directed (optional): Default is False, that is input graph is assumed undirected graph
+- A graph (required). Weight parameter in the graph is optional
+- Source nodes (required)
+- Target nodes (required)
+- Type (optional): Can assume either a value of 0 or 1. Defalut is 0 which would be used to calculate node betweeness; 1 for edge betweeeness.
+- normalized (optional): Default is False. If True the betweenness values are normalized by `2/((n−1)(n−2))` for graphs, and `1/((n−1)(n−2))` for directed graphs where n is the number of nodes in G.
+- directed (optional): Default is False, that is input graph is assumed undirected graph
 
 #### Sample input
 
@@ -122,8 +121,3 @@ where the content of the file `query_bet.json` is
 }
 
 ```
-
-
-
-
-

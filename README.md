@@ -1,7 +1,6 @@
 ## General Data Types
 
-
-### Calculating 
+### Calculating
 
 #### Fees
 
@@ -11,7 +10,7 @@
 
 see `contract-addresses/` for `.json` and `.csv`
 
-### Data Percision 
+### Data Percision
 
 #### GraphQL / Javascript
 
@@ -20,10 +19,10 @@ The limited precision of numbers in JavaScript is Number.MAX_SAFE_INTEGER nanose
 ```js
 // uint32 (two's complement) max
 // more conservative than Number.MAX_SAFE_INTEGER
-const MAX = 4294967295
+const MAX = 4294967295;
 ```
-> source: https://github.com/metamask/json-rpc-engine/blob/5001c0dc013dba0f11f64847f66bfbbbcf9b92bb/src/getUniqueId.js#L3
 
+> source: https://github.com/metamask/json-rpc-engine/blob/5001c0dc013dba0f11f64847f66bfbbbcf9b92bb/src/getUniqueId.js#L3
 
 ### Exchange
 
@@ -75,8 +74,7 @@ seconds 1604403060
 
 \$ date -u Tue Nov 3 11:41:10 UTC 2020
 
-
-## Data Analysis 
+## Data Analysis
 
 > as defined in 'structs.py'
 
@@ -126,7 +124,6 @@ seconds 1604403060
         token_balance: int = token_balance
         trade_volume: int = trade_volume
 
-
 #### RelayInfo:
 
         token_address: str = token_address
@@ -140,9 +137,6 @@ seconds 1604403060
         history: List[History] = list()
         converter_logs: List[dict] = list()
         relay_logs: List[dict] = list()
-
-
-
 
 #### Market Data
 

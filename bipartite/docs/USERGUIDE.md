@@ -1,23 +1,21 @@
-[![SingnetLogo](../../../docs/assets/singnet-logo.jpg?raw=true 'SingularityNET')](https://singularitynet.io/)
+[![SingnetLogo](../../../docs/assets/singnet-logo.jpg?raw=true "SingularityNET")](https://singularitynet.io/)
 
 # Bipartite Graph Services
 
-
 ## Methods
 
-* [BipartiteGraph](#bipartitegraph)
-* [ProjectedGraph](#projectedgraph)
+- [BipartiteGraph](#bipartitegraph)
+- [ProjectedGraph](#projectedgraph)
 
 ## BipartiteGraph
 
-Create a bipartite graph from two given nodes and a set of edges. Also making sure that the supplied graph is bipartite graph.
-It will give specific error messages when the supplied graph can not be converted into a bipartite graph.
+Create a bipartite graph from two given nodes and a set of edges. Also making sure that the supplied graph is bipartite graph. It will give specific error messages when the supplied graph can not be converted into a bipartite graph.
 
 ### Inputs
 
-* Bipartition nodes (required): first set of nodes representing the bipartition
-* Bipartition nodes (required): second set of nodes representing the bipartiion
-* Edges (requried): A list of edges connection the first set of nodes with the second
+- Bipartition nodes (required): first set of nodes representing the bipartition
+- Bipartition nodes (required): second set of nodes representing the bipartiion
+- Edges (requried): A list of edges connection the first set of nodes with the second
 
 #### Sample input
 
@@ -69,29 +67,27 @@ where the content of the file `query.json` is
 
 Returns the projection of a bipartite graph on a given set of nodes.
 
-
 ### Inputs
 
-* A bipartite graph (required)
-* A set of node nodes (required)
-* Weight logic (requried): the ist of possible values are below (inputs are case-sensitive)
+- A bipartite graph (required)
+- A set of node nodes (required)
+- Weight logic (requried): the ist of possible values are below (inputs are case-sensitive)
 
-    - **none**: No weight is used. The corresponding networkx method called is “projected_graph” with multigraph=False.
+  - **none**: No weight is used. The corresponding networkx method called is “projected_graph” with multigraph=False.
 
-    - **multigraph**: a multigraph where the multiple edges represent multiple shared neighbors. The edge key in the multigraph is assigned to the label of the neighbor. The corresponding networkx method called is “projected_graph” with multigraph=True.
+  - **multigraph**: a multigraph where the multiple edges represent multiple shared neighbors. The edge key in the multigraph is assigned to the label of the neighbor. The corresponding networkx method called is “projected_graph” with multigraph=True.
 
-    - **degree**: number of shared neighbors. The corresponding networkx method called is “weighted_projected_graph” with ration=False.
+  - **degree**: number of shared neighbors. The corresponding networkx method called is “weighted_projected_graph” with ration=False.
 
-    - **degree_ratio**: ration between actual shared neighbors and possible shared neighbors. The corresponding networkx method called is “weighted_projected_graph” with ration=True.
+  - **degree_ratio**: ration between actual shared neighbors and possible shared neighbors. The corresponding networkx method called is “weighted_projected_graph” with ration=True.
 
-    - **Newman**: The collaboration weighted projection is the projection of the bipartite network B onto the specified nodes with weights assigned using Newman’s collaboration Model. The corresponding networkx method called is “collaboration_weighted_projected_graph”.
+  - **Newman**: The collaboration weighted projection is the projection of the bipartite network B onto the specified nodes with weights assigned using Newman’s collaboration Model. The corresponding networkx method called is “collaboration_weighted_projected_graph”.
 
-    - **Jaccard**: Jaccard index between the neighborhoods of the two nodes in the original bipartite graph. The corresponding networkx method called is “overlap_weighted_projected_graph” with jaccard=True.
+  - **Jaccard**: Jaccard index between the neighborhoods of the two nodes in the original bipartite graph. The corresponding networkx method called is “overlap_weighted_projected_graph” with jaccard=True.
 
-    - **Jaccard_modified**: the fraction of common neighbors by minimum of both nodes degree in the original bipartite Graph. The corresponding networkx method called is “overlap_weighted_projected_graph” with jaccard=True.
+  - **Jaccard_modified**: the fraction of common neighbors by minimum of both nodes degree in the original bipartite Graph. The corresponding networkx method called is “overlap_weighted_projected_graph” with jaccard=True.
 
-    - **generic**: user defined generic function. Not implemented yet.
-
+  - **generic**: user defined generic function. Not implemented yet.
 
 #### Sample input
 
@@ -147,8 +143,3 @@ where the content of the file `query_projected.json` is
           "weights":[2.5,0.5,2.5,0.5,0.5,1.5,1,0.5,0.5,0.5,0.5]}
 }
 ```
-
-
-
-
-

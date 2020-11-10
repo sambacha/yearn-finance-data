@@ -46,7 +46,6 @@
         token_balance: int = token_balance
         trade_volume: int = trade_volume
 
-
 ### RelayInfo:
 
         token_address: str = token_address
